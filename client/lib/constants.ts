@@ -199,7 +199,7 @@ export const HERO_SLIDES = [
 ] as const;
 
 export const CONTACT_INFO = {
-  address: "Mohammadia Complex, Motizheel, Dhaka, BD",
+  address: "28, 1 Toyenbee Circular Rd, Dhaka 1000",
   email: "arman@almas-companies.com",
   phone: "+8801740768976",
   hours: "Sunday - Thursday: 9:00 AM - 6:00 PM",

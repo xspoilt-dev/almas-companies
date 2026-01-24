@@ -149,18 +149,31 @@ export default function Footer() {
           </div>
           
           {/* Developer Credit */}
-          <div className="mt-4 pt-4 border-t border-white/5 text-center">
-            <p className="text-white/50 text-xs">
-              Developed by{" "}
+          <div className="mt-6 pt-6 border-t border-white/10 text-center">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 hover:border-gold/30 transition-all duration-300 group">
+              <span className="text-white/60 text-sm">Crafted with</span>
+              <svg
+                className="w-4 h-4 text-gold animate-pulse"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-white/60 text-sm">by</span>
               <a
                 href="https://theforgebit.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gold/80 hover:text-gold transition-colors font-medium"
+                className="text-gold font-semibold group-hover:text-white transition-colors duration-300 relative"
               >
                 TheForgeBit
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300"></span>
               </a>
-            </p>
+            </div>
           </div>
         </div>
       </div>

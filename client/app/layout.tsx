@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://almasgroup.com"),
+  metadataBase: new URL("https://almas-companies.com"),
   title: {
     default: "Almas Group | Global Import Export & Trade Services",
     template: "%s | Almas Group",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://almasgroup.com",
+    url: "https://almas-companies.com",
     siteName: "Almas Group",
     title: "Almas Group | Global Import Export & Trade Services",
     description:
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://almasgroup.com",
+    canonical: "https://almas-companies.com",
   },
 };
 

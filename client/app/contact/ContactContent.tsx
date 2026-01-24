@@ -407,25 +407,16 @@ export default function ContactContent() {
             transition={{ duration: 0.6 }}
             className="relative rounded-2xl overflow-hidden shadow-lg"
           >
-            {/* Map Placeholder */}
-            <div className="aspect-[21/9] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-                  <FaMapMarkerAlt className="text-2xl text-royal-blue" />
-                </div>
-                <p className="text-gray-600 font-medium mb-2">Interactive Map</p>
-                <p className="text-gray-500 text-sm max-w-md">
-                  {CONTACT_INFO.address}
-                </p>
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT_INFO.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 px-4 py-2 bg-royal-blue text-white text-sm font-medium rounded-lg hover:bg-royal-blue-dark transition-colors"
-                >
-                  Open in Google Maps
-                </a>
-              </div>
+            {/* Google Maps Embed */}
+            <div className="aspect-[21/9] w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29215.35739479228!2d90.41018878663496!3d23.75024366976588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85916ce4e85%3A0xa0adb5fd6f443174!2sRahmania%20International%20Complex!5e0!3m2!1sen!2sbd!4v1769232015764!5m2!1sen!2sbd"
+                className="w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </motion.div>
         </div>

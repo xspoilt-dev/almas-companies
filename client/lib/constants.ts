@@ -199,9 +199,9 @@ export const HERO_SLIDES = [
 ] as const;
 
 export const CONTACT_INFO = {
-  address: "123 Trade Center Boulevard, Business District, Dubai, UAE",
-  email: "info@almasgroup.com",
-  phone: "+971 4 123 4567",
+  address: "Mohammadia Complex, Motizheel, Dhaka, BD",
+  email: "arman@almas-companies.com",
+  phone: "+8801740768976",
   hours: "Sunday - Thursday: 9:00 AM - 6:00 PM",
 } as const;
 

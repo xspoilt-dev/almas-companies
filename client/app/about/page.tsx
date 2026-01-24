@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "About Almas Group | Global Trade Excellence Since 1999",
     description:
       "Discover our journey, mission, and values. 25+ years of connecting businesses across continents.",
-    url: "https://almasgroup.com/about",
+    url: "https://almas-companies.com/about",
   },
 };
 

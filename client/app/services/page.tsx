@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Services | Almas Group - Complete Trade Solutions",
     description:
       "From import-export to logistics and consulting, discover how our services can help your business succeed globally.",
-    url: "https://almasgroup.com/services",
+    url: "https://almas-companies.com/services",
   },
 };
 

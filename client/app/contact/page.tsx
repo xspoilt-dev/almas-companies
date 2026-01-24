@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Contact Us | Almas Group - Global Trade Partner",
     description:
       "Ready to expand your business globally? Contact our team for personalized trade solutions.",
-    url: "https://almasgroup.com/contact",
+    url: "https://almas-companies.com/contact",
   },
 };
 

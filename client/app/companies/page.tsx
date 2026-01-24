@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Our Companies | Almas Group Business Portfolio",
     description:
       "Discover the diverse businesses operating under the Almas Group umbrella across multiple industries.",
-    url: "https://almasgroup.com/companies",
+    url: "https://almas-companies.com/companies",
   },
 };
 

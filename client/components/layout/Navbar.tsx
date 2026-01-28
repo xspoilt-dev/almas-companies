@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowRight } from "react-icons/fa";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,155 +32,236 @@ export default function Navbar() {
   const useLightText = isHomePage && !isScrolled;
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : isHomePage
-            ? "bg-transparent"
-            : "bg-white/95 backdrop-blur-md shadow-sm"
-      )}
-    >
-      <nav className="container-custom">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-3"
-            >
-              <div className={cn(
-                "w-10 h-10 rounded-lg flex items-center justify-center",
-                useLightText 
-                  ? "bg-white/20 backdrop-blur-sm border border-white/30" 
-                  : "bg-gradient-to-br from-royal-blue to-royal-blue-dark"
-              )}>
-                <span className="text-white font-bold text-xl">A</span>
-              </div>
-              <div className="flex flex-col">
-                <span className={cn(
-                  "text-xl font-bold transition-colors",
-                  useLightText ? "text-white" : "text-royal-blue"
-                )}>Almas</span>
-                <span className={cn(
-                  "text-xs -mt-1 transition-colors",
-                  useLightText ? "text-white/70" : "text-gray-600"
-                )}>Group</span>
-              </div>
-            </motion.div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <motion.ul
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="hidden md:flex items-center gap-1"
-          >
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                    useLightText
-                      ? pathname === link.href
-                        ? "text-white bg-white/20"
-                        : "text-white/80 hover:text-white hover:bg-white/10"
-                      : pathname === link.href
-                        ? "text-royal-blue bg-royal-blue/10"
-                        : "text-gray-700 hover:text-royal-blue hover:bg-royal-blue/5"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </motion.ul>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="hidden md:block"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-royal-blue to-royal-blue-dark text-white text-sm font-semibold rounded-lg shadow-lg shadow-royal-blue/25 hover:shadow-xl hover:shadow-royal-blue/30 transform hover:-translate-y-0.5 transition-all duration-200"
-            >
-              Get Started
+    <>
+      {/* Main navbar */}
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          isScrolled
+            ? "bg-white/90 backdrop-blur-2xl shadow-lg shadow-slate-900/5 border-b border-slate-200/50"
+            : useLightText 
+              ? "bg-white/5 backdrop-blur-xl border-b border-white/10" 
+              : "bg-white/90 backdrop-blur-2xl shadow-sm border-b border-slate-200/50"
+        )}
+      >
+        <nav className="container-custom">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 group">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-4"
+              >
+                <div className={cn(
+                  "relative w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-105",
+                  useLightText 
+                    ? "bg-white/15 backdrop-blur-md border border-white/25 shadow-lg shadow-black/10" 
+                    : "bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 shadow-lg shadow-indigo-500/10"
+                )}>
+                  <Image 
+                    src="/images/logo.png" 
+                    alt="Almas Group Logo" 
+                    width={56} 
+                    height={56}
+                    className="w-full h-full object-contain"
+                    priority
+                  />
+                  {/* Animated ring */}
+                  <div className={cn(
+                    "absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                    useLightText ? "border-amber-400/50" : "border-indigo-400/50"
+                  )} />
+                </div>
+                <div className="flex flex-col">
+                  <span className={cn(
+                    "text-xl font-bold tracking-tight transition-colors duration-300",
+                    useLightText ? "text-white" : "text-slate-900"
+                  )}>
+                    Almas
+                    <span className={cn(
+                      "ml-1",
+                      useLightText ? "text-amber-400" : "text-indigo-600"
+                    )}>Group</span>
+                  </span>
+                  <span className={cn(
+                    "text-[10px] uppercase tracking-[0.2em] font-medium -mt-0.5 transition-colors duration-300",
+                    useLightText ? "text-white/60" : "text-slate-500"
+                  )}>Global Trade</span>
+                </div>
+              </motion.div>
             </Link>
-          </motion.div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              "md:hidden p-2 transition-colors",
-              useLightText 
-                ? "text-white hover:text-gold" 
-                : "text-gray-700 hover:text-royal-blue"
-            )}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
+            {/* Desktop Navigation */}
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="hidden lg:flex items-center"
             >
               <div className={cn(
-                "py-4 border-t mx-4 rounded-lg",
+                "flex items-center gap-1 px-2 py-2 rounded-2xl transition-all duration-300",
                 useLightText 
-                  ? "bg-white/10 backdrop-blur-md border-white/20" 
-                  : "bg-white border-gray-100"
+                  ? "bg-white/10 backdrop-blur-md border border-white/15" 
+                  : "bg-slate-100/80 border border-slate-200/50"
               )}>
-                <ul className="flex flex-col gap-2 px-2">
-                  {NAV_LINKS.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
+                      useLightText
+                        ? pathname === link.href
+                          ? "text-white bg-white/20"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
+                        : pathname === link.href
+                          ? "text-indigo-600 bg-white shadow-sm"
+                          : "text-slate-600 hover:text-indigo-600 hover:bg-white/60"
+                    )}
+                  >
+                    {link.label}
+                    {pathname === link.href && (
+                      <motion.div
+                        layoutId="activeNav"
                         className={cn(
-                          "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 text-center",
-                          useLightText
-                            ? pathname === link.href
-                              ? "text-white bg-white/20"
-                              : "text-white/90 hover:text-white hover:bg-white/10"
-                            : pathname === link.href
-                              ? "text-royal-blue bg-royal-blue/10"
-                              : "text-gray-700 hover:text-royal-blue hover:bg-royal-blue/5"
+                          "absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full",
+                          useLightText ? "bg-amber-400" : "bg-indigo-600"
                         )}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                  <li className="pt-2 px-2">
-                    <Link
-                      href="/contact"
-                      className="block text-center px-4 py-3 bg-gradient-to-r from-gold to-gold-dark text-royal-blue-dark text-sm font-semibold rounded-lg"
-                    >
-                      Get Started
-                    </Link>
-                  </li>
-                </ul>
+                      />
+                    )}
+                  </Link>
+                ))}
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </header>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="hidden lg:flex items-center gap-4"
+            >
+              <Link
+                href="/contact"
+                className={cn(
+                  "group inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-2xl transition-all duration-300 transform hover:-translate-y-0.5",
+                  useLightText
+                    ? "bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 shadow-lg shadow-amber-500/30 hover:shadow-xl hover:shadow-amber-500/40"
+                    : "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40"
+                )}
+              >
+                Get Started
+                <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </motion.div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={cn(
+                "lg:hidden p-3 rounded-xl transition-all duration-300",
+                useLightText 
+                  ? "text-white bg-white/10 hover:bg-white/20 border border-white/20" 
+                  : "text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200"
+              )}
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaTimes size={20} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaBars size={20} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden overflow-hidden"
+              >
+                <div className={cn(
+                  "py-6 mx-4 mb-4 rounded-2xl border",
+                  useLightText 
+                    ? "bg-white/10 backdrop-blur-xl border-white/20" 
+                    : "bg-white/95 backdrop-blur-xl border-slate-200/50 shadow-xl"
+                )}>
+                  <ul className="flex flex-col gap-2 px-4">
+                    {NAV_LINKS.map((link, index) => (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-200",
+                            useLightText
+                              ? pathname === link.href
+                                ? "text-white bg-white/20"
+                                : "text-white/90 hover:text-white hover:bg-white/10"
+                              : pathname === link.href
+                                ? "text-indigo-600 bg-indigo-50"
+                                : "text-slate-700 hover:text-indigo-600 hover:bg-slate-50"
+                          )}
+                        >
+                          {link.label}
+                          {pathname === link.href && (
+                            <div className={cn(
+                              "w-2 h-2 rounded-full",
+                              useLightText ? "bg-amber-400" : "bg-indigo-600"
+                            )} />
+                          )}
+                        </Link>
+                      </motion.li>
+                    ))}
+                    <motion.li
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: NAV_LINKS.length * 0.05 }}
+                      className="pt-4 px-1"
+                    >
+                      <Link
+                        href="/contact"
+                        className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-bold rounded-xl shadow-lg"
+                      >
+                        Get Started
+                        <FaArrowRight className="text-sm" />
+                      </Link>
+                    </motion.li>
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
+      </header>
+    </>
   );
 }

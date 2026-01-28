@@ -5,6 +5,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { SERVICES } from "@/lib/constants";
 import Link from "next/link";
+import Image from "next/image";
 import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
 
 export default function ServicesContent() {
@@ -16,8 +17,9 @@ export default function ServicesContent() {
       />
 
       {/* Services Overview */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <SectionHeading title="What We Offer" subtitle="Our Expertise">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -35,7 +37,6 @@ export default function ServicesContent() {
           {/* Services Grid */}
           <div className="space-y-16">
             {SERVICES.map((service, index) => {
-              const Icon = service.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -52,10 +53,7 @@ export default function ServicesContent() {
                   {/* Content */}
                   <div className={isEven ? "lg:order-1" : "lg:order-2"}>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-royal-blue to-royal-blue-dark flex items-center justify-center shadow-lg shadow-royal-blue/20">
-                        <Icon className="text-white text-2xl" />
-                      </div>
-                      <span className="px-3 py-1 bg-gold/10 text-gold-dark text-sm font-semibold rounded-full">
+                      <span className="px-3 py-1 bg-amber-100/80 text-amber-700 text-sm font-semibold rounded-full">
                         Service {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
@@ -87,7 +85,7 @@ export default function ServicesContent() {
 
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 text-royal-blue font-semibold hover:gap-3 transition-all duration-200"
+                      className="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:gap-3 hover:text-indigo-700 transition-all duration-200"
                     >
                       Get a Quote
                       <FaArrowRight className="text-sm" />
@@ -101,30 +99,44 @@ export default function ServicesContent() {
                       transition={{ duration: 0.3 }}
                       className="relative"
                     >
-                      <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl overflow-hidden border border-gray-200">
-                        {/* Pattern background */}
-                        <div 
-                          className="absolute inset-0 opacity-50"
-                          style={{
-                            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(30, 64, 175, 0.1) 1px, transparent 0)`,
-                            backgroundSize: '24px 24px'
-                          }}
+                      <div className="aspect-square rounded-2xl overflow-hidden border border-gray-200 shadow-xl relative">
+                        {/* Service Image */}
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
                         />
+                        
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/90 via-indigo-900/50 to-transparent z-10" />
+                        
+                        {/* Content Overlay */}
+                        <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                          <h4 className="text-white font-bold text-xl mb-2 drop-shadow-lg">
+                            {service.title}
+                          </h4>
+                          <p className="text-white/90 text-sm drop-shadow-md">
+                            {service.shortDescription}
+                          </p>
+                        </div>
 
-                        {/* Icon display */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-royal-blue to-royal-blue-dark flex items-center justify-center shadow-xl">
-                              <Icon className="text-white text-4xl" />
-                            </div>
-                            <p className="text-gray-900 font-semibold">{service.title}</p>
-                          </div>
+                        {/* Logo watermark */}
+                        <div className="absolute top-6 right-6 z-20 opacity-60">
+                          <Image 
+                            src="/images/logo.png" 
+                            alt="Almas Group" 
+                            width={50} 
+                            height={50}
+                            className="opacity-80"
+                          />
                         </div>
                       </div>
 
                       {/* Decorative elements */}
-                      <div className={`absolute -z-10 ${isEven ? "-bottom-4 -right-4" : "-bottom-4 -left-4"} w-24 h-24 bg-gold/20 rounded-2xl`} />
-                      <div className={`absolute -z-10 ${isEven ? "-top-4 -left-4" : "-top-4 -right-4"} w-16 h-16 bg-royal-blue/10 rounded-xl`} />
+                      <div className={`absolute -z-10 ${isEven ? "-bottom-4 -right-4" : "-bottom-4 -left-4"} w-24 h-24 bg-amber-400/20 rounded-2xl`} />
+                      <div className={`absolute -z-10 ${isEven ? "-top-4 -left-4" : "-top-4 -right-4"} w-16 h-16 bg-indigo-500/10 rounded-xl`} />
                     </motion.div>
                   </div>
                 </motion.div>
@@ -135,25 +147,26 @@ export default function ServicesContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container-custom">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white/60 to-amber-50/40 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-3xl mx-auto bg-white/60 backdrop-blur-sm rounded-3xl p-12 border border-white/50 shadow-xl shadow-indigo-900/5"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Need a Custom Solution?
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-slate-600 mb-8">
               Our team is ready to design a tailored package that meets your specific 
               business requirements. Contact us to discuss your needs.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-royal-blue to-royal-blue-dark text-white font-semibold rounded-lg shadow-lg shadow-royal-blue/25 hover:shadow-xl hover:shadow-royal-blue/30 transform hover:-translate-y-0.5 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-200"
             >
               Contact Our Team
               <FaArrowRight className="text-sm" />

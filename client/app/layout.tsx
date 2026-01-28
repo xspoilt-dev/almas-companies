@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { AnimatedBackground } from "@/components/effects";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -85,17 +94,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="icon" href="/android-chrome-192x192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/android-chrome-512x512.png" type="image/png" sizes="512x512" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1e40af" />
       </head>
-      <body className="font-sans antialiased bg-white text-gray-900">
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+      <body className="font-sans antialiased text-slate-900 overflow-x-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10">
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

@@ -6,25 +6,25 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-royal-blue-dark via-royal-blue to-royal-blue-dark text-white">
+    <footer className="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white">
       {/* Glass overlay */}
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
       
       <div className="relative container-custom">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-20">
           {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                <span className="text-gold font-bold text-2xl">A</span>
+          <div className="space-y-5">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+                <span className="text-amber-400 font-bold text-2xl">A</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Almas Group</h3>
-                <p className="text-sm text-white/60">Global Trade Excellence</p>
+                <h3 className="text-xl font-bold tracking-tight">Almas Group</h3>
+                <p className="text-sm text-white/50">Global Trade Excellence</p>
               </div>
             </div>
-            <p className="text-white/70 text-sm leading-relaxed">
+            <p className="text-white/60 text-sm leading-relaxed">
               Your trusted partner in international trade, logistics, and business consulting. 
               Connecting businesses across continents since 1999.
             </p>
@@ -33,7 +33,7 @@ export default function Footer() {
                 href="https://linkedin.com/company/almasgroup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-gold/80 flex items-center justify-center transition-all duration-200"
+                className="w-11 h-11 rounded-xl bg-white/5 hover:bg-indigo-500 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-indigo-400"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin size={18} />
@@ -42,7 +42,7 @@ export default function Footer() {
                 href="https://twitter.com/almasgroup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-gold/80 flex items-center justify-center transition-all duration-200"
+                className="w-11 h-11 rounded-xl bg-white/5 hover:bg-indigo-500 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-indigo-400"
                 aria-label="Twitter"
               >
                 <FaTwitter size={18} />
@@ -51,7 +51,7 @@ export default function Footer() {
                 href="https://facebook.com/almasgroup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-gold/80 flex items-center justify-center transition-all duration-200"
+                className="w-11 h-11 rounded-xl bg-white/5 hover:bg-indigo-500 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-indigo-400"
                 aria-label="Facebook"
               >
                 <FaFacebook size={18} />
@@ -61,16 +61,16 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-5 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gold"></span>
+            <h4 className="text-lg font-bold mb-6 flex items-center gap-3">
+              <span className="w-8 h-px bg-gradient-to-r from-amber-400 to-transparent"></span>
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-gold transition-colors duration-200 text-sm"
+                    className="text-white/60 hover:text-amber-400 transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </Link>
@@ -81,16 +81,16 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-5 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gold"></span>
+            <h4 className="text-lg font-bold mb-6 flex items-center gap-3">
+              <span className="w-8 h-px bg-gradient-to-r from-amber-400 to-transparent"></span>
               Our Services
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {SERVICES.slice(0, 5).map((service) => (
                 <li key={service.id}>
                   <Link
                     href="/services"
-                    className="text-white/70 hover:text-gold transition-colors duration-200 text-sm"
+                    className="text-white/60 hover:text-amber-400 transition-colors duration-300 text-sm"
                   >
                     {service.title}
                   </Link>
@@ -101,29 +101,35 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-5 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gold"></span>
+            <h4 className="text-lg font-bold mb-6 flex items-center gap-3">
+              <span className="w-8 h-px bg-gradient-to-r from-amber-400 to-transparent"></span>
               Contact Us
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <FaMapMarkerAlt className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-white/70 text-sm">{CONTACT_INFO.address}</span>
+            <ul className="space-y-5">
+              <li className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                  <FaMapMarkerAlt className="text-amber-400" />
+                </div>
+                <span className="text-white/60 text-sm">{CONTACT_INFO.address}</span>
               </li>
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-gold flex-shrink-0" />
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                  <FaEnvelope className="text-amber-400" />
+                </div>
                 <a 
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="text-white/70 hover:text-gold transition-colors text-sm"
+                  className="text-white/60 hover:text-amber-400 transition-colors text-sm"
                 >
                   {CONTACT_INFO.email}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <FaPhone className="text-gold flex-shrink-0" />
+              <li className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                  <FaPhone className="text-amber-400" />
+                </div>
                 <a 
                   href={`tel:${CONTACT_INFO.phone}`}
-                  className="text-white/70 hover:text-gold transition-colors text-sm"
+                  className="text-white/60 hover:text-amber-400 transition-colors text-sm"
                 >
                   {CONTACT_INFO.phone}
                 </a>

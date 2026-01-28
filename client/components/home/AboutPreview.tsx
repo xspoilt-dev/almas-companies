@@ -6,9 +6,11 @@ import { FaArrowRight } from "react-icons/fa";
 
 export default function AboutPreview() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="section-padding relative">
+      {/* Subtle frosted glass overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+      <div className="container-custom relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -16,56 +18,56 @@ export default function AboutPreview() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-0.5 bg-gold" />
-              <span className="text-gold-dark text-sm font-semibold uppercase tracking-wider">
+            <div className="flex items-center gap-4 mb-5">
+              <span className="w-12 h-px bg-gradient-to-r from-transparent to-amber-400" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full text-amber-600 bg-amber-50 border border-amber-200/50">
                 About Us
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Connecting Global Markets Since 1999
             </h2>
 
-            <p className="text-gray-600 leading-relaxed mb-4">
+            <p className="text-slate-600 leading-relaxed mb-4 text-lg">
               Almas Group has been at the forefront of international trade for over two decades. 
               As a diversified conglomerate, we specialize in import-export services, logistics, 
               and business consulting, serving clients across continents.
             </p>
 
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-slate-600 leading-relaxed mb-8 text-lg">
               Our commitment to excellence, combined with our deep understanding of global markets, 
               has made us a trusted partner for businesses seeking to expand their international footprint. 
               We bridge the gap between markets, ensuring seamless transactions and lasting partnerships.
             </p>
 
-            <div className="flex flex-wrap gap-6 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-royal-blue/10 flex items-center justify-center">
-                  <span className="text-xl font-bold text-royal-blue">25+</span>
+            <div className="flex flex-wrap gap-8 mb-10">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200/50 flex items-center justify-center">
+                  <span className="text-xl font-bold text-indigo-600">25+</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Years</div>
-                  <div className="text-sm text-gray-500">Experience</div>
+                  <div className="font-bold text-slate-900">Years</div>
+                  <div className="text-sm text-slate-500">Experience</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
-                  <span className="text-xl font-bold text-gold-dark">50+</span>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200/50 flex items-center justify-center">
+                  <span className="text-xl font-bold text-amber-600">50+</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Countries</div>
-                  <div className="text-sm text-gray-500">Worldwide</div>
+                  <div className="font-bold text-slate-900">Countries</div>
+                  <div className="text-sm text-slate-500">Worldwide</div>
                 </div>
               </div>
             </div>
 
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 text-royal-blue font-semibold hover:gap-3 transition-all duration-200"
+              className="inline-flex items-center gap-3 text-indigo-600 font-semibold hover:gap-4 transition-all duration-300 group"
             >
               Learn More About Us
-              <FaArrowRight className="text-sm" />
+              <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
 
@@ -79,7 +81,7 @@ export default function AboutPreview() {
           >
             <div className="relative">
               {/* Main visual block */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-royal-blue via-royal-blue-dark to-royal-blue rounded-2xl overflow-hidden shadow-2xl">
+              <div className="aspect-[4/3] bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-600 rounded-3xl overflow-hidden shadow-2xl shadow-indigo-500/25">
                 {/* Pattern overlay */}
                 <div 
                   className="absolute inset-0 opacity-10"
@@ -92,34 +94,34 @@ export default function AboutPreview() {
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center justify-center p-8">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                      <span className="text-5xl font-bold text-gold">A</span>
+                    <div className="w-28 h-28 mx-auto mb-5 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/25">
+                      <span className="text-5xl font-bold text-amber-400">A</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Almas Group</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Almas Group</h3>
                     <p className="text-white/70">Global Trade Excellence</p>
                   </div>
                 </div>
               </div>
 
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gold/20 rounded-2xl -z-10" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-royal-blue/10 rounded-2xl -z-10" />
+              <div className="absolute -top-4 -right-4 w-28 h-28 bg-gradient-to-br from-amber-200 to-amber-300 rounded-3xl -z-10 opacity-60" />
+              <div className="absolute -bottom-4 -left-4 w-36 h-36 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-3xl -z-10 opacity-60" />
               
               {/* Floating badge */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-4"
+                className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl shadow-slate-900/10 p-5 border border-slate-100"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl flex items-center justify-center border border-emerald-200/50">
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-gray-900">ISO Certified</div>
-                    <div className="text-xs text-gray-500">Quality Assured</div>
+                    <div className="text-sm font-bold text-slate-900">ISO Certified</div>
+                    <div className="text-xs text-slate-500">Quality Assured</div>
                   </div>
                 </div>
               </motion.div>

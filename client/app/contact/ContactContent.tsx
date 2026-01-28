@@ -34,23 +34,45 @@ export default function ContactContent() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (static site - no backend)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch("https://almas-companies.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-    }, 1500);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,8 +83,9 @@ export default function ContactContent() {
       />
 
       {/* Contact Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <motion.div
@@ -74,8 +97,8 @@ export default function ContactContent() {
             >
               <div className="sticky top-32">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="w-10 h-0.5 bg-gold" />
-                  <span className="text-gold-dark text-sm font-semibold uppercase tracking-wider">
+                  <span className="w-10 h-0.5 bg-amber-500" />
+                  <span className="text-amber-600 text-sm font-semibold uppercase tracking-wider">
                     Get in Touch
                   </span>
                 </div>
@@ -92,8 +115,8 @@ export default function ContactContent() {
                 {/* Contact Details */}
                 <div className="space-y-6 mb-8">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-royal-blue/10 flex items-center justify-center flex-shrink-0">
-                      <FaMapMarkerAlt className="text-royal-blue text-lg" />
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                      <FaMapMarkerAlt className="text-indigo-600 text-lg" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
@@ -102,14 +125,14 @@ export default function ContactContent() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-royal-blue/10 flex items-center justify-center flex-shrink-0">
-                      <FaEnvelope className="text-royal-blue text-lg" />
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                      <FaEnvelope className="text-indigo-600 text-lg" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-royal-blue hover:underline text-sm"
+                        className="text-indigo-600 hover:underline text-sm"
                       >
                         {CONTACT_INFO.email}
                       </a>
@@ -117,14 +140,14 @@ export default function ContactContent() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-royal-blue/10 flex items-center justify-center flex-shrink-0">
-                      <FaPhone className="text-royal-blue text-lg" />
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                      <FaPhone className="text-indigo-600 text-lg" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                       <a
                         href={`tel:${CONTACT_INFO.phone}`}
-                        className="text-royal-blue hover:underline text-sm"
+                        className="text-indigo-600 hover:underline text-sm"
                       >
                         {CONTACT_INFO.phone}
                       </a>
@@ -132,8 +155,8 @@ export default function ContactContent() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-royal-blue/10 flex items-center justify-center flex-shrink-0">
-                      <FaClock className="text-royal-blue text-lg" />
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                      <FaClock className="text-indigo-600 text-lg" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Business Hours</h4>
@@ -150,7 +173,7 @@ export default function ContactContent() {
                       href="https://linkedin.com/company/almasgroup"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-royal-blue hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
+                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
                       aria-label="LinkedIn"
                     >
                       <FaLinkedin size={18} />
@@ -159,7 +182,7 @@ export default function ContactContent() {
                       href="https://twitter.com/almasgroup"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-royal-blue hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
+                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
                       aria-label="Twitter"
                     >
                       <FaTwitter size={18} />
@@ -168,7 +191,7 @@ export default function ContactContent() {
                       href="https://facebook.com/almasgroup"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-royal-blue hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
+                      className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
                       aria-label="Facebook"
                     >
                       <FaFacebook size={18} />
@@ -186,7 +209,7 @@ export default function ContactContent() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-2"
             >
-              <div className="bg-gray-50 rounded-2xl p-8 md:p-10 border border-gray-100">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/50 shadow-xl shadow-indigo-900/5">
                 {isSubmitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -216,7 +239,7 @@ export default function ContactContent() {
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
-                      className="text-royal-blue font-semibold hover:underline"
+                      className="text-indigo-600 font-semibold hover:underline"
                     >
                       Send Another Message
                     </button>
@@ -246,8 +269,7 @@ export default function ContactContent() {
                             value={formData.name}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
-                            placeholder="John Doe"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
                           />
                         </div>
                         <div>
@@ -264,8 +286,7 @@ export default function ContactContent() {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
-                            placeholder="john@company.com"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
                           />
                         </div>
                       </div>
@@ -284,7 +305,7 @@ export default function ContactContent() {
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
                             placeholder="Your Company"
                           />
                         </div>
@@ -301,7 +322,7 @@ export default function ContactContent() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
                             placeholder="+1 234 567 890"
                           />
                         </div>
@@ -320,7 +341,7 @@ export default function ContactContent() {
                           value={formData.subject}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all bg-white"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all"
                         >
                           <option value="">Select a subject</option>
                           <option value="import-export">Import/Export Inquiry</option>
@@ -347,7 +368,7 @@ export default function ContactContent() {
                           onChange={handleChange}
                           required
                           rows={5}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all resize-none"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all resize-none"
                           placeholder="Tell us about your requirements..."
                         />
                       </div>
@@ -355,7 +376,7 @@ export default function ContactContent() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-royal-blue to-royal-blue-dark text-white font-semibold rounded-lg shadow-lg shadow-royal-blue/25 hover:shadow-xl hover:shadow-royal-blue/30 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
                       >
                         {isSubmitting ? (
                           <>
@@ -398,8 +419,9 @@ export default function ContactContent() {
       </section>
 
       {/* Map Section */}
-      <section className="bg-gray-100">
-        <div className="container-custom py-12">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white/60 to-amber-50/40 backdrop-blur-[1px]" />
+        <div className="container-custom py-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

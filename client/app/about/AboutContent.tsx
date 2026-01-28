@@ -26,8 +26,9 @@ export default function AboutContent() {
       />
 
       {/* Company Overview */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -35,18 +36,18 @@ export default function AboutContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-0.5 bg-gold" />
-                <span className="text-gold-dark text-sm font-semibold uppercase tracking-wider">
+              <div className="flex items-center gap-4 mb-5">
+                <span className="w-12 h-px bg-gradient-to-r from-transparent to-amber-400" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full text-amber-600 bg-amber-50 border border-amber-200/50">
                   Our Story
                 </span>
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
                 A Legacy of Excellence in Global Trade
               </h2>
 
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-slate-600 leading-relaxed text-lg">
                 <p>
                   Founded in 1999, Almas Group has grown from a small trading company 
                   to a diversified conglomerate with operations spanning multiple continents. 
@@ -81,12 +82,12 @@ export default function AboutContent() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow"
+                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-slate-200/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-royal-blue mb-1">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
+                  <div className="text-slate-600 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -95,8 +96,9 @@ export default function AboutContent() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
-        <div className="container-custom">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/40 via-white/30 to-amber-50/30 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Mission */}
             <motion.div
@@ -104,13 +106,13 @@ export default function AboutContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-shadow"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg shadow-indigo-900/5 border border-white/50 hover:shadow-xl hover:border-indigo-200 transition-all"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-royal-blue to-royal-blue-dark rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-royal-blue/20">
+              <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/25">
                 <FaBullseye className="text-white text-2xl" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Mission</h3>
+              <p className="text-slate-600 leading-relaxed">
                 To empower businesses with seamless international trade solutions, 
                 delivering exceptional value through innovative services, operational 
                 excellence, and unwavering commitment to client success. We strive to 
@@ -125,13 +127,13 @@ export default function AboutContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-shadow"
+              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg shadow-indigo-900/5 border border-white/50 hover:shadow-xl hover:border-amber-200 transition-all"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-gold to-gold-dark rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-gold/20">
-                <FaEye className="text-royal-blue-dark text-2xl" />
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-amber-500/25">
+                <FaEye className="text-indigo-950 text-2xl" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Vision</h3>
+              <p className="text-slate-600 leading-relaxed">
                 To be the world&apos;s most trusted partner in international trade, 
                 recognized for our integrity, innovation, and impact. We envision a 
                 future where businesses of all sizes can access global markets with 
@@ -144,8 +146,9 @@ export default function AboutContent() {
       </section>
 
       {/* Core Values */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-amber-50/30 to-indigo-50/40 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <SectionHeading title="Our Core Values" subtitle="What Drives Us" />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -160,9 +163,9 @@ export default function AboutContent() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group text-center"
                 >
-                  <div className="bg-gradient-to-b from-gray-50 to-white rounded-2xl p-8 border border-gray-100 hover:border-royal-blue/20 hover:shadow-lg transition-all h-full">
-                    <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-royal-blue/10 flex items-center justify-center group-hover:bg-royal-blue group-hover:scale-110 transition-all duration-300">
-                      <Icon className="text-2xl text-royal-blue group-hover:text-white transition-colors" />
+                  <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/50 hover:border-indigo-200 hover:shadow-xl shadow-lg shadow-indigo-900/5 transition-all h-full">
+                    <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-gradient-to-br from-indigo-100 to-indigo-50 flex items-center justify-center group-hover:from-indigo-600 group-hover:to-violet-600 group-hover:scale-110 transition-all duration-300 shadow-sm">
+                      <Icon className="text-2xl text-indigo-600 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {value.title}
@@ -179,11 +182,12 @@ export default function AboutContent() {
       </section>
 
       {/* Global Mindset */}
-      <section className="section-padding bg-gradient-to-br from-royal-blue-dark via-royal-blue to-royal-blue-light relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-900 relative overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-3xl animate-blob" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="container-custom relative">
@@ -195,8 +199,8 @@ export default function AboutContent() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-0.5 bg-gold" />
-                <span className="text-gold text-sm font-semibold uppercase tracking-wider">
+                <span className="w-10 h-0.5 bg-amber-400" />
+                <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">
                   Global Perspective
                 </span>
               </div>
@@ -227,7 +231,7 @@ export default function AboutContent() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex items-center gap-3"
                   >
-                    <FaCheckCircle className="text-gold flex-shrink-0" />
+                    <FaCheckCircle className="text-amber-400 flex-shrink-0" />
                     <span className="text-white/90">{item}</span>
                   </motion.li>
                 ))}

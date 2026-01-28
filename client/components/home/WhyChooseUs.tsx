@@ -39,18 +39,19 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding bg-gradient-to-br from-royal-blue-dark via-royal-blue to-royal-blue-dark relative overflow-hidden">
+    <section className="section-padding bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-600 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-400/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-400/10 rounded-full blur-3xl" />
       </div>
 
       {/* Grid pattern */}
       <div 
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`,
           backgroundSize: '50px 50px'
         }}
       />
@@ -66,7 +67,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 max-w-2xl mx-auto mt-4"
+            className="text-white/80 max-w-2xl mx-auto mt-5 text-lg leading-relaxed"
           >
             Partner with a company that combines global reach with personalized service 
             to deliver exceptional results for your business.
@@ -83,16 +84,16 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="h-full p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-gold/30 transition-all duration-300">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center group-hover:bg-gold group-hover:scale-110 transition-all duration-300">
-                    <reason.icon className="text-gold text-xl group-hover:text-royal-blue-dark transition-colors duration-300" />
+              <div className="h-full p-7 rounded-3xl bg-white/10 backdrop-blur-md border border-white/15 hover:bg-white/15 hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-2">
+                <div className="flex items-start gap-5">
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-amber-400/20 flex items-center justify-center group-hover:bg-amber-400 group-hover:scale-110 transition-all duration-500">
+                    <reason.icon className="text-amber-400 text-xl group-hover:text-indigo-900 transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-gold transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors tracking-tight">
                       {reason.title}
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed">
+                    <p className="text-white/65 text-sm leading-relaxed">
                       {reason.description}
                     </p>
                   </div>

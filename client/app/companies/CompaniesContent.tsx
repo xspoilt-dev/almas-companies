@@ -17,8 +17,9 @@ export default function CompaniesContent() {
       />
 
       {/* Companies Grid */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <SectionHeading title="The Almas Group Portfolio" subtitle="Our Businesses">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -49,8 +50,9 @@ export default function CompaniesContent() {
       </section>
 
       {/* Synergy Section */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
-        <div className="container-custom">
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/50 via-white/60 to-amber-50/40 backdrop-blur-[1px]" />
+        <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -59,8 +61,8 @@ export default function CompaniesContent() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-0.5 bg-gold" />
-                <span className="text-gold-dark text-sm font-semibold uppercase tracking-wider">
+                <span className="w-10 h-0.5 bg-amber-500" />
+                <span className="text-amber-600 text-sm font-semibold uppercase tracking-wider">
                   Unified Strength
                 </span>
               </div>
@@ -91,7 +93,7 @@ export default function CompaniesContent() {
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
                     <span className="text-gray-700">{item}</span>
                   </motion.li>
                 ))}
@@ -99,7 +101,7 @@ export default function CompaniesContent() {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-royal-blue to-royal-blue-dark text-white font-semibold rounded-lg shadow-lg shadow-royal-blue/25 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
               >
                 Partner With Us
                 <FaArrowRight className="text-sm" />
@@ -116,9 +118,9 @@ export default function CompaniesContent() {
               {/* Network visualization */}
               <div className="aspect-square max-w-md mx-auto relative">
                 {/* Central hub */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-royal-blue to-royal-blue-dark rounded-full flex items-center justify-center shadow-2xl z-10">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-full flex items-center justify-center shadow-2xl shadow-indigo-500/30 z-10">
                   <div className="text-center">
-                    <span className="text-2xl font-bold text-gold">A</span>
+                    <span className="text-2xl font-bold text-amber-400">A</span>
                     <p className="text-white text-xs">Group</p>
                   </div>
                 </div>
@@ -144,7 +146,7 @@ export default function CompaniesContent() {
                       }}
                       title={company.name}
                     >
-                      <Icon className="text-xl text-royal-blue" />
+                      <Icon className="text-xl text-indigo-600" />
                     </motion.div>
                   );
                 })}
@@ -156,7 +158,7 @@ export default function CompaniesContent() {
                     cy="200"
                     r="140"
                     fill="none"
-                    stroke="rgba(30, 64, 175, 0.1)"
+                    stroke="rgba(79, 70, 229, 0.15)"
                     strokeWidth="1"
                     strokeDasharray="8 4"
                   />
@@ -168,9 +170,10 @@ export default function CompaniesContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-royal-blue-dark via-royal-blue to-royal-blue-light relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-3xl animate-blob" />
         </div>
 
         <div className="container-custom relative text-center">
@@ -189,7 +192,7 @@ export default function CompaniesContent() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-royal-blue-dark font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-indigo-950 font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
             >
               Get in Touch
               <FaArrowRight className="text-sm" />

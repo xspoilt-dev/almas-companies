@@ -47,20 +47,21 @@ export default function HeroSlider() {
             unoptimized
           />
           
-          {/* Blue overlay for consistent branding */}
-          <div className="absolute inset-0 bg-gradient-to-r from-royal-blue-dark/90 via-royal-blue/80 to-royal-blue-dark/70" />
+          {/* Premium gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/95 via-indigo-900/85 to-violet-900/80" />
           
           {/* Decorative shapes */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-gold/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+            <div className="absolute top-20 left-10 w-80 h-80 bg-amber-400/15 rounded-full blur-3xl animate-pulse-soft" />
+            <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl" />
           </div>
 
           {/* Grid pattern overlay */}
           <div 
-            className="absolute inset-0 opacity-5"
+            className="absolute inset-0 opacity-[0.03]"
             style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
               backgroundSize: '60px 60px'
             }}
           />
@@ -85,36 +86,36 @@ export default function HeroSlider() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6"
+                  className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
                 >
-                  <span className="w-2 h-2 bg-gold rounded-full animate-pulse" />
-                  <span className="text-white/90 text-sm font-medium">
+                  <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+                  <span className="text-white/95 text-sm font-medium tracking-wide">
                     25+ Years of Excellence in Global Trade
                   </span>
                 </motion.div>
 
                 {/* Title */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-7 leading-tight font-display tracking-tight">
                   {HERO_SLIDES[currentSlide].title}
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-white/85 mb-10 max-w-2xl leading-relaxed">
                   {HERO_SLIDES[currentSlide].subtitle}
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gold hover:bg-gold-light text-royal-blue-dark font-semibold rounded-lg shadow-lg shadow-gold/30 hover:shadow-xl hover:shadow-gold/40 transform hover:-translate-y-0.5 transition-all duration-200"
+                    className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-900 font-bold rounded-2xl shadow-xl shadow-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/40 transform hover:-translate-y-1 transition-all duration-300"
                   >
                     Get Started
                     <FaArrowRight className="text-sm" />
                   </Link>
                   <Link
                     href="/services"
-                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/30 backdrop-blur-sm transition-all duration-200"
+                    className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-2xl border-2 border-white/25 backdrop-blur-md hover:border-white/40 transition-all duration-300"
                   >
                     Our Services
                   </Link>
@@ -132,7 +133,7 @@ export default function HeroSlider() {
             prevSlide();
             setIsAutoPlaying(false);
           }}
-          className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
+          className="pointer-events-auto p-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-110 hover:border-white/40"
           aria-label="Previous slide"
         >
           <FaChevronLeft />
@@ -142,7 +143,7 @@ export default function HeroSlider() {
             nextSlide();
             setIsAutoPlaying(false);
           }}
-          className="pointer-events-auto p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110"
+          className="pointer-events-auto p-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-110 hover:border-white/40"
           aria-label="Next slide"
         >
           <FaChevronRight />
@@ -158,10 +159,10 @@ export default function HeroSlider() {
               setCurrentSlide(index);
               setIsAutoPlaying(false);
             }}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`h-2.5 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "w-10 bg-gold"
-                : "w-2 bg-white/40 hover:bg-white/60"
+                ? "w-12 bg-gradient-to-r from-amber-400 to-amber-500"
+                : "w-2.5 bg-white/30 hover:bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -175,15 +176,15 @@ export default function HeroSlider() {
         transition={{ delay: 1 }}
         className="absolute bottom-10 right-10 hidden md:flex flex-col items-center gap-2"
       >
-        <span className="text-white/60 text-xs uppercase tracking-wider rotate-90 origin-center translate-x-6">
+        <span className="text-white/50 text-xs uppercase tracking-widest rotate-90 origin-center translate-x-6">
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
+          className="w-7 h-12 rounded-full border-2 border-white/25 flex items-start justify-center p-2"
         >
-          <div className="w-1 h-2 bg-gold rounded-full" />
+          <div className="w-1.5 h-3 bg-amber-400 rounded-full" />
         </motion.div>
       </motion.div>
     </section>

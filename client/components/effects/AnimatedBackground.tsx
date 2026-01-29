@@ -2,14 +2,14 @@
 
 import { useEffect, useState, useMemo } from "react";
 
-// ===== CONFIGURABLE VARIABLES =====
+// ===== PERFORMANCE OPTIMIZED CONFIGURATION =====
 const CONFIG = {
-  // Floating orbs
-  orbCount: 8,
-  // Geometric shapes
-  shapeCount: 15,
-  // Gradient blobs
-  blobCount: 5,
+  // Reduce counts for better performance on low-end devices
+  orbCount: 4,        // Reduced from 8
+  shapeCount: 8,      // Reduced from 15
+  blobCount: 3,       // Reduced from 5
+  // Disable animations on mobile for better performance
+  disableAnimationsOnMobile: true,
 };
 
 interface Orb {
@@ -124,20 +124,41 @@ const generateBlobs = (): Blob[] => {
 
 export default function AnimatedBackground() {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const orbs = useMemo(() => generateOrbs(), []);
   const shapes = useMemo(() => generateShapes(), []);
   const blobs = useMemo(() => generateBlobs(), []);
 
   useEffect(() => {
     setMounted(true);
+    // Detect mobile/low-end devices
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 
+        (typeof navigator !== 'undefined' && /Mobi|Android|iPhone/i.test(navigator.userAgent)));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   if (!mounted) {
     return <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} aria-hidden="true" />;
   }
 
+  // Reduce animation count on mobile
+  const activeOrbs = isMobile ? orbs.slice(0, 2) : orbs;
+  const activeShapes = isMobile ? shapes.slice(0, 4) : shapes;
+  const activeBlobs = isMobile ? blobs.slice(0, 2) : blobs;
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }} aria-hidden="true">
+    <div 
+      className="fixed inset-0 pointer-events-none overflow-hidden" 
+      style={{ 
+        zIndex: 0,
+        willChange: 'transform', // GPU acceleration
+      }} 
+      aria-hidden="true"
+    >
       {/* Premium base gradient - soft cream to light indigo */}
       <div 
         className="absolute inset-0"
@@ -181,45 +202,47 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Gradient blobs layer */}
-      {blobs.map((blob) => (
+      {/* Gradient blobs layer - with GPU acceleration */}
+      {activeBlobs.map((blob) => (
         <div
           key={`blob-${blob.id}`}
-          className="absolute rounded-full animate-blob blur-3xl"
+          className="absolute rounded-full blur-3xl"
           style={{
             left: `${blob.x}%`,
             top: `${blob.y}%`,
             width: blob.size,
             height: blob.size,
             background: `radial-gradient(circle, ${blob.color1} 0%, ${blob.color2} 50%, transparent 70%)`,
-            animationDuration: `${blob.animationDuration}s`,
+            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `blob ${blob.animationDuration}s ease-in-out infinite`,
             animationDelay: `${blob.animationDelay}s`,
+            willChange: isMobile ? 'auto' : 'transform',
           }}
         />
       ))}
 
-      {/* Floating orbs layer */}
-      {orbs.map((orb) => (
+      {/* Floating orbs layer - optimized */}
+      {activeOrbs.map((orb) => (
         <div
           key={`orb-${orb.id}`}
-          className="absolute rounded-full animate-float-orb blur-2xl"
+          className="absolute rounded-full blur-2xl"
           style={{
             left: `${orb.x}%`,
             top: `${orb.y}%`,
             width: orb.size,
             height: orb.size,
             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
-            animationDuration: `${orb.animationDuration}s`,
+            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `float-orb ${orb.animationDuration}s ease-in-out infinite`,
             animationDelay: `${orb.animationDelay}s`,
+            willChange: isMobile ? 'auto' : 'transform',
           }}
         />
       ))}
 
-      {/* Geometric shapes layer */}
-      {shapes.map((shape) => (
+      {/* Geometric shapes layer - optimized */}
+      {activeShapes.map((shape) => (
         <div
           key={`shape-${shape.id}`}
-          className="absolute animate-float-shape"
+          className="absolute"
           style={{
             left: `${shape.x}%`,
             top: `${shape.y}%`,
@@ -227,8 +250,9 @@ export default function AnimatedBackground() {
             height: shape.size,
             opacity: shape.opacity,
             transform: `rotate(${shape.rotation}deg)`,
-            animationDuration: `${shape.animationDuration}s`,
+            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `float-shape ${shape.animationDuration}s ease-in-out infinite`,
             animationDelay: `${shape.animationDelay}s`,
+            willChange: isMobile ? 'auto' : 'transform',
           }}
         >
           {shape.type === 'square' && (

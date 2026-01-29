@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import ContactContent from "./ContactContent";
 
 export const metadata: Metadata = {
@@ -21,5 +22,9 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactContent />;
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <ContactContent />
+    </Suspense>
+  );
 }

@@ -103,7 +103,43 @@ export const IMPORT_PRODUCTS = [
   },
 ];
 
-export const EXPORT_PRODUCTS: typeof IMPORT_PRODUCTS = [];
+export const EXPORT_PRODUCTS = [
+  {
+    id: 1,
+    name: "Grain",
+    image: "/images/export/grain.jpg",
+    description: "Premium quality grains for international markets. High-grade cereals meeting global food safety standards.",
+    category: "Grains",
+  },
+  {
+    id: 2,
+    name: "Orange",
+    image: "/images/export/orange.jpg",
+    description: "Fresh citrus oranges packed with vitamin C. Sweet and juicy fruits sourced from the finest orchards.",
+    category: "Fruits",
+  },
+  {
+    id: 3,
+    name: "Pomegranate",
+    image: "/images/export/POMEGRANATE.jpg",
+    description: "Premium pomegranates rich in antioxidants. Fresh, ruby-red arils with exceptional taste and quality.",
+    category: "Fruits",
+  },
+  {
+    id: 4,
+    name: "Poultry Meal",
+    image: "/images/export/Poultry_Meal.jpg",
+    description: "High-protein poultry meal for animal feed. Excellent source of amino acids and nutrients for livestock.",
+    category: "Animal Feed",
+  },
+  {
+    id: 5,
+    name: "Rapeseed Extraction",
+    image: "/images/export/Rapeseed_Extraction.jpg",
+    description: "Quality rapeseed meal extracted from premium seeds. Ideal for animal nutrition and feed formulation.",
+    category: "By-products",
+  },
+] as const;
 
 export const SERVICES = [
   {
@@ -164,16 +200,16 @@ export const SERVICES = [
   },
   {
     id: 5,
-    title: "Lighterage Contractor",
+    title: "Inland water transport (IWT)",
     image: "https://skmsbd.com/media/blog_images/post_images/Lighter_Vessel_in_Chittagong.jpeg",
-    shortDescription: "Specialized lighterage services for port and harbor cargo operations.",
-    fullDescription: "We provide lighterage operations to transfer cargo between vessels and shore facilities. Our fleet of barges and experienced crews handle bulk and breakbulk cargo efficiently in ports, harbors, and anchorages, ensuring smooth cargo operations.",
+    shortDescription: "Specialized inland waterway transport services for efficient cargo movement.",
+    fullDescription: "We provide comprehensive inland water transport services using rivers and waterways for efficient cargo movement. Our fleet of vessels and experienced crews handle bulk and breakbulk cargo efficiently through inland water routes, ensuring cost-effective and environmentally friendly transportation.",
     benefits: [
-      "Port and harbor operations",
-      "Barge fleet management",
+      "River and waterway operations",
+      "Vessel fleet management",
       "Bulk cargo handling",
-      "Ship-to-shore transfers",
-      "Anchorage services",
+      "Port-to-inland transfers",
+      "Eco-friendly transport solutions",
     ],
   },
   {
@@ -192,16 +228,16 @@ export const SERVICES = [
   },
   {
     id: 7,
-    title: "Door To Door",
+    title: "Warehouse Service",
     image: "https://bentranspvtltd.com/wp-content/uploads/2025/09/Door-to-Door-1.jpg",
-    shortDescription: "Complete door-to-door logistics solutions for seamless delivery.",
-    fullDescription: "Experience hassle-free shipping with our comprehensive door-to-door service. We handle everything from pickup at origin to final delivery at destination, including customs clearance, documentation, and last-mile delivery, ensuring a smooth end-to-end experience.",
+    shortDescription: "Comprehensive warehousing and storage solutions for your cargo.",
+    fullDescription: "Our modern warehouse facilities provide secure storage and distribution solutions for your goods. With state-of-the-art inventory management systems, climate-controlled storage options, and strategic locations, we ensure your cargo is stored safely and efficiently until ready for shipment or distribution.",
     benefits: [
-      "Complete end-to-end service",
-      "Pickup and delivery coordination",
-      "All documentation handled",
-      "Customs clearance included",
-      "Single point of contact",
+      "Secure storage facilities",
+      "Inventory management systems",
+      "Climate-controlled options",
+      "Strategic locations",
+      "Loading and unloading services",
     ],
   },
   {
@@ -244,6 +280,20 @@ export const SERVICES = [
       "Competitive price negotiation",
       "Supplier vetting and verification",
       "Sample coordination and approval",
+    ],
+  },
+  {
+    id: 11,
+    title: "Bulk Cargo Handling",
+    image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80",
+    shortDescription: "Professional bulk cargo handling and stevedoring services.",
+    fullDescription: "Our specialized bulk cargo handling services ensure efficient loading, unloading, and storage of large-volume shipments. With experienced stevedores, modern equipment, and systematic procedures, we handle grain, coal, ore, and other bulk materials safely and efficiently at ports and terminals.",
+    benefits: [
+      "Experienced stevedoring teams",
+      "Modern cargo handling equipment",
+      "Safe loading and unloading",
+      "Grain, coal, and ore handling",
+      "Port and terminal operations",
     ],
   },
 ] as const;
@@ -313,10 +363,10 @@ export const CORE_VALUES = [
 ] as const;
 
 export const STATS = [
-  { value: "25+", label: "Years Experience" },
-  { value: "50+", label: "Countries Served" },
-  { value: "1000+", label: "Happy Clients" },
-  { value: "5000+", label: "Shipments Annually" },
+  { value: "30+", label: "Years Experience" },
+  { value: "10+", label: "Countries Served" },
+  { value: "100+", label: "Happy Clients" },
+  { value: "600+", label: "Shipments Annually" },
 ] as const;
 
 export const HERO_SLIDES = [
@@ -335,10 +385,12 @@ export const HERO_SLIDES = [
   {
     id: 3,
     title: "Your Trusted Trade Partner",
-    subtitle: "25+ years of international trading expertise at your service",
+    subtitle: "30+ years of international trading expertise at your service",
     image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80",
   },
 ] as const;
+
+export const BUSINESS_CATEGORY = "Commercial and Industrial Raw-materials Supplier" as const;
 
 export const CONTACT_INFO = {
   address: "28, 1 Toyenbee Circular Rd, Dhaka 1000",
@@ -348,7 +400,7 @@ export const CONTACT_INFO = {
 } as const;
 
 export const SOCIAL_LINKS = {
-  linkedin: "https://linkedin.com/company/almasgroup",
+  linkedin: "https://linkedin.com/company/almas-companies",
   twitter: "https://twitter.com/almasgroup",
-  facebook: "https://facebook.com/almasgroup",
+  facebook: "https://www.facebook.com/profile.php?id=61587080888872",
 } as const;

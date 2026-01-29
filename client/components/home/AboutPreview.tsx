@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 
 export default function AboutPreview() {
@@ -26,7 +27,7 @@ export default function AboutPreview() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-              Connecting Global Markets Since 1999
+              Connecting Global Markets Since 1995
             </h2>
 
             <p className="text-slate-600 leading-relaxed mb-4 text-lg">
@@ -93,12 +94,14 @@ export default function AboutPreview() {
                 
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="w-28 h-28 mx-auto mb-5 rounded-3xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/25">
-                      <span className="text-5xl font-bold text-amber-400">A</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Almas Group</h3>
-                    <p className="text-white/70">Global Trade Excellence</p>
+                  <div className="text-center flex items-center justify-center">
+                    <Image 
+                      src="/logo.png" 
+                      alt="Almas Group Logo" 
+                      width={280} 
+                      height={120}
+                      className="w-auto h-auto max-w-[280px] brightness-0 invert"
+                    />
                   </div>
                 </div>
               </div>
@@ -106,25 +109,6 @@ export default function AboutPreview() {
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-28 h-28 bg-gradient-to-br from-amber-200 to-amber-300 rounded-3xl -z-10 opacity-60" />
               <div className="absolute -bottom-4 -left-4 w-36 h-36 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-3xl -z-10 opacity-60" />
-              
-              {/* Floating badge */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl shadow-slate-900/10 p-5 border border-slate-100"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl flex items-center justify-center border border-emerald-200/50">
-                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900">ISO Certified</div>
-                    <div className="text-xs text-slate-500">Quality Assured</div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>

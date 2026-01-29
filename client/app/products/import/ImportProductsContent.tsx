@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +10,15 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { IMPORT_PRODUCTS } from "@/lib/constants";
 
 export default function ImportProductsContent() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Products");
+
   // Get unique categories
   const categories = [...new Set(IMPORT_PRODUCTS.map((p) => p.category))];
+
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory === "All Products" 
+    ? IMPORT_PRODUCTS 
+    : IMPORT_PRODUCTS.filter((p) => p.category === selectedCategory);
 
   return (
     <>
@@ -46,22 +54,34 @@ export default function ImportProductsContent() {
             transition={{ duration: 0.5 }}
             className="flex flex-wrap justify-center gap-3 mb-12"
           >
-            <span className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-full">
+            <button
+              onClick={() => setSelectedCategory("All Products")}
+              className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                selectedCategory === "All Products"
+                  ? "bg-indigo-600 text-white"
+                  : "bg-white/70 backdrop-blur-sm text-slate-600 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
+              }`}
+            >
               All Products
-            </span>
+            </button>
             {categories.map((category) => (
-              <span
+              <button
                 key={category}
-                className="px-4 py-2 bg-white/70 backdrop-blur-sm text-slate-600 text-sm font-medium rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 transition-all cursor-pointer"
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                  selectedCategory === category
+                    ? "bg-indigo-600 text-white"
+                    : "bg-white/70 backdrop-blur-sm text-slate-600 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
+                }`}
               >
                 {category}
-              </span>
+              </button>
             ))}
           </motion.div>
 
           {/* Products Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {IMPORT_PRODUCTS.map((product, index) => (
+            {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 30 }}

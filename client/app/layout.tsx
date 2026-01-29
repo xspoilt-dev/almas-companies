@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { AnimatedBackground } from "@/components/effects";
+import ClientLayout from "@/components/layout/ClientLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -62,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "Almas Group",
     title: "Almas Group | Global Import Export & Trade Services",
     description:
-      "Your trusted partner in international trade, logistics, and business consulting. 25+ years of experience serving clients across 50+ countries.",
+      "Your trusted partner in international trade, logistics, and business consulting. 30+ years of experience serving clients across 10+ countries.",
     images: [
       {
         url: "/og-image.jpg",
@@ -106,12 +104,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#1e40af" />
       </head>
       <body className="font-sans antialiased text-slate-900 overflow-x-hidden">
-        <AnimatedBackground />
-        <div className="relative z-10">
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

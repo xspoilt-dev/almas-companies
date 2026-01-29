@@ -209,7 +209,7 @@ Thank you.`;
                   <h4 className="font-semibold text-gray-900 mb-3">Follow Us</h4>
                   <div className="flex gap-3">
                     <a
-                      href="https://linkedin.com/company/almasgroup"
+                      href="https://linkedin.com/almas-companies"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
@@ -218,7 +218,7 @@ Thank you.`;
                       <FaLinkedin size={18} />
                     </a>
                     <a
-                      href="https://twitter.com/almasgroup"
+                      href="https://twitter.com/almas-companies"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"
@@ -227,7 +227,7 @@ Thank you.`;
                       <FaTwitter size={18} />
                     </a>
                     <a
-                      href="https://facebook.com/almasgroup"
+                      href="https://www.facebook.com/profile.php?id=6158708088872"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-600 flex items-center justify-center transition-all duration-200"

@@ -13,7 +13,7 @@ const reasons = [
   {
     icon: FaShieldAlt,
     title: "Trusted Expertise",
-    description: "25+ years of experience in international trade with proven track record of success.",
+    description: "30+ years of experience in international trade with proven track record of success.",
   },
   {
     icon: FaClock,

@@ -1,13 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRight, FaBoxOpen, FaClock } from "react-icons/fa";
+import { FaArrowRight, FaBoxOpen, FaClock, FaPlane } from "react-icons/fa";
 import PageHeader from "@/components/ui/PageHeader";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { EXPORT_PRODUCTS } from "@/lib/constants";
 
 export default function ExportProductsContent() {
   const hasProducts = EXPORT_PRODUCTS.length > 0;
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Products");
+
+  // Get unique categories
+  const categories = [...new Set(EXPORT_PRODUCTS.map((p) => p.category))];
+
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory === "All Products" 
+    ? EXPORT_PRODUCTS 
+    : EXPORT_PRODUCTS.filter((p) => p.category === selectedCategory);
 
   return (
     <>
@@ -22,10 +34,116 @@ export default function ExportProductsContent() {
         <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
         <div className="container-custom relative z-10">
           {hasProducts ? (
-            // Products Grid - will be populated when export products are added
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Products will be mapped here */}
-            </div>
+            <>
+              <SectionHeading title="Our Export Portfolio" subtitle="Quality Products">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-slate-600 max-w-3xl mx-auto mt-4"
+                >
+                  We export high-quality products from Bangladesh to international markets. 
+                  Each product is carefully selected and quality-controlled to meet global standards.
+                </motion.p>
+              </SectionHeading>
+
+              {/* Category Filter */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-wrap justify-center gap-3 mb-12"
+              >
+                <button
+                  onClick={() => setSelectedCategory("All Products")}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                    selectedCategory === "All Products"
+                      ? "bg-indigo-600 text-white"
+                      : "bg-white/70 backdrop-blur-sm text-slate-600 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
+                  }`}
+                >
+                  All Products
+                </button>
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                      selectedCategory === category
+                        ? "bg-indigo-600 text-white"
+                        : "bg-white/70 backdrop-blur-sm text-slate-600 border border-slate-200 hover:border-indigo-300 hover:text-indigo-600"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </motion.div>
+
+              {/* Products Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProducts.map((product, index) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    whileHover={{ y: -8 }}
+                    className="group"
+                  >
+                    <div className="relative h-full bg-white/70 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg shadow-indigo-900/5 overflow-hidden hover:shadow-2xl hover:border-indigo-200 transition-all duration-300">
+                      {/* Product Image */}
+                      <div className="relative h-56 overflow-hidden">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-indigo-950/80 via-indigo-900/20 to-transparent" />
+                        
+                        {/* Category Badge */}
+                        <div className="absolute top-4 left-4">
+                          <span className="px-3 py-1 bg-amber-400 text-indigo-950 text-xs font-semibold rounded-full">
+                            {product.category}
+                          </span>
+                        </div>
+
+                        {/* Export Badge */}
+                        <div className="absolute top-4 right-4">
+                          <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                            <FaPlane className="text-white text-sm" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                          {product.name}
+                        </h3>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                          {product.description}
+                        </p>
+
+                        {/* Inquiry Button */}
+                        <Link
+                          href={`/contact?product=${encodeURIComponent(product.name)}&type=export`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-sm font-semibold rounded-xl shadow-md shadow-indigo-500/20 hover:shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-200"
+                        >
+                          <FaBoxOpen className="text-xs" />
+                          Inquire Now
+                          <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </>
           ) : (
             // Coming Soon State
             <motion.div

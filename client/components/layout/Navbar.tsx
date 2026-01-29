@@ -79,40 +79,16 @@ export default function Navbar() {
                 className="flex items-center gap-4"
               >
                 <div className={cn(
-                  "relative w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-105",
-                  useLightText 
-                    ? "bg-white/15 backdrop-blur-md border border-white/25 shadow-lg shadow-black/10" 
-                    : "bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 shadow-lg shadow-indigo-500/10"
+                  "relative h-16 transition-all duration-300 group-hover:scale-105",
                 )}>
                   <Image 
-                    src="/images/logo.png" 
+                    src="/logo.png" 
                     alt="Almas Group Logo" 
-                    width={56} 
-                    height={56}
-                    className="w-full h-full object-contain"
+                    width={180} 
+                    height={64}
+                    className="h-full w-auto object-contain"
                     priority
                   />
-                  {/* Animated ring */}
-                  <div className={cn(
-                    "absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-                    useLightText ? "border-amber-400/50" : "border-indigo-400/50"
-                  )} />
-                </div>
-                <div className="flex flex-col">
-                  <span className={cn(
-                    "text-xl font-bold tracking-tight transition-colors duration-300",
-                    useLightText ? "text-white" : "text-slate-900"
-                  )}>
-                    Almas
-                    <span className={cn(
-                      "ml-1",
-                      useLightText ? "text-amber-400" : "text-indigo-600"
-                    )}>Group</span>
-                  </span>
-                  <span className={cn(
-                    "text-[10px] uppercase tracking-[0.2em] font-medium -mt-0.5 transition-colors duration-300",
-                    useLightText ? "text-white/60" : "text-slate-500"
-                  )}>Global Trade</span>
                 </div>
               </motion.div>
             </Link>

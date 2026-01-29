@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FaLinkedin, FaTwitter, FaFacebook, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { NAV_LINKS, CONTACT_INFO, SERVICES } from "@/lib/constants";
 
@@ -16,17 +17,17 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-5">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/20 to-violet-500/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
-                <span className="text-amber-400 font-bold text-2xl">A</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold tracking-tight">Almas Group</h3>
-                <p className="text-sm text-white/50">Global Trade Excellence</p>
-              </div>
+              <Image 
+                src="/logo.png" 
+                alt="Almas Group Logo" 
+                width={180} 
+                height={64}
+                className="h-12 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               Your trusted partner in international trade, logistics, and business consulting. 
-              Connecting businesses across continents since 1999.
+              Connecting businesses across continents since 1995.
             </p>
             <div className="flex gap-3 pt-2">
               <a

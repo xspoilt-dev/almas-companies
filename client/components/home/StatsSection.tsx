@@ -1,9 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { STATS } from "@/lib/constants";
 
-export default function StatsSection() {
+const StatsSection = () => {
   return (
     <section className="py-16 relative">
       {/* Frosted glass overlay */}
@@ -29,4 +30,6 @@ export default function StatsSection() {
       </div>
     </section>
   );
-}
+};
+
+export default memo(StatsSection);

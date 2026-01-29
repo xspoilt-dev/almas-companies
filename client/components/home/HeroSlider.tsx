@@ -31,10 +31,10 @@ export default function HeroSlider() {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
           className="absolute inset-0"
         >
           {/* Background Image */}
@@ -43,8 +43,10 @@ export default function HeroSlider() {
             alt={HERO_SLIDES[currentSlide].title}
             fill
             className="object-cover"
-            priority
-            unoptimized
+            priority={currentSlide === 0}
+            quality={85}
+            sizes="100vw"
+            loading={currentSlide === 0 ? "eager" : "lazy"}
           />
           
           {/* Premium gradient overlay */}
@@ -90,7 +92,7 @@ export default function HeroSlider() {
                 >
                   <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
                   <span className="text-white/95 text-sm font-medium tracking-wide">
-                    25+ Years of Excellence in Global Trade
+                    30+ Years of Excellence in Global Trade
                   </span>
                 </motion.div>
 

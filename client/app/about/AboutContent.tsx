@@ -22,7 +22,7 @@ export default function AboutContent() {
     <>
       <PageHeader
         title="About Almas Group"
-        subtitle="Connecting global markets with trust, expertise, and innovation since 1999"
+        subtitle="Connecting global markets with trust, expertise, and innovation since 1995"
       />
 
       {/* Company Overview */}
@@ -49,14 +49,14 @@ export default function AboutContent() {
 
               <div className="space-y-4 text-slate-600 leading-relaxed text-lg">
                 <p>
-                  Founded in 1999, Almas Group has grown from a small trading company 
+                  Founded in 1995, Almas Group has grown from a small trading company 
                   to a diversified conglomerate with operations spanning multiple continents. 
                   Our journey began with a simple vision: to bridge the gap between markets 
                   and create opportunities for businesses worldwide.
                 </p>
                 <p>
-                  Today, we are proud to serve over 1,000 clients across 50+ countries, 
-                  handling more than 5,000 shipments annually. Our comprehensive suite of 
+                  Today, we are proud to serve over 100 happy clients across 10+ countries, 
+                  handling more than 600 shipments annually. Our comprehensive suite of 
                   services covers everything from import-export operations to logistics, 
                   customs clearance, and strategic business consulting.
                 </p>

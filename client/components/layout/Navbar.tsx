@@ -4,16 +4,40 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes, FaArrowRight } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowRight, FaChevronDown } from "react-icons/fa";
 import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
+type NavLink = {
+  href: string;
+  label: string;
+  children?: readonly { href: string; label: string }[];
+};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentPath, setCurrentPath] = useState("/");
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  
+  // Update current path when pathname changes
+  useEffect(() => {
+    if (pathname) {
+      setCurrentPath(pathname);
+    }
+  }, [pathname]);
+
+  // Check if a link is active
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return currentPath === "/";
+    }
+    return currentPath.startsWith(href);
+  };
+
+  const isHomePage = currentPath === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +50,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [pathname]);
+  }, [currentPath]);
 
   // Determine if navbar should use light text (on dark backgrounds)
   const useLightText = isHomePage && !isScrolled;
@@ -106,33 +130,110 @@ export default function Navbar() {
                   ? "bg-white/10 backdrop-blur-md border border-white/15" 
                   : "bg-slate-100/80 border border-slate-200/50"
               )}>
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
-                      useLightText
-                        ? pathname === link.href
-                          ? "text-white bg-white/20"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
-                        : pathname === link.href
-                          ? "text-indigo-600 bg-white shadow-sm"
-                          : "text-slate-600 hover:text-indigo-600 hover:bg-white/60"
-                    )}
-                  >
-                    {link.label}
-                    {pathname === link.href && (
-                      <motion.div
-                        layoutId="activeNav"
-                        className={cn(
-                          "absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full",
-                          useLightText ? "bg-amber-400" : "bg-indigo-600"
-                        )}
-                      />
-                    )}
-                  </Link>
-                ))}
+                {(NAV_LINKS as readonly NavLink[]).map((link) => {
+                  const isActive = isLinkActive(link.href);
+                  const hasChildren = link.children && link.children.length > 0;
+
+                  if (hasChildren) {
+                    return (
+                      <div
+                        key={link.href}
+                        className="relative"
+                        onMouseEnter={() => setOpenDropdown(link.href)}
+                        onMouseLeave={() => setOpenDropdown(null)}
+                      >
+                        <button
+                          className={cn(
+                            "relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 inline-flex items-center gap-1.5",
+                            useLightText
+                              ? isActive
+                                ? "text-white bg-white/25 shadow-inner"
+                                : "text-white/80 hover:text-white hover:bg-white/10"
+                              : isActive
+                                ? "text-indigo-700 bg-white shadow-md font-semibold"
+                                : "text-slate-600 hover:text-indigo-600 hover:bg-white/60"
+                          )}
+                        >
+                          {link.label}
+                          <FaChevronDown className={cn(
+                            "text-[10px] transition-transform duration-200",
+                            openDropdown === link.href && "rotate-180"
+                          )} />
+                          {isActive && (
+                            <motion.div
+                              layoutId="activeNav"
+                              className={cn(
+                                "absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-1 rounded-full",
+                                useLightText ? "bg-amber-400" : "bg-indigo-600"
+                              )}
+                              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                            />
+                          )}
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        <AnimatePresence>
+                          {openDropdown === link.href && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute top-full left-0 mt-2 w-56 py-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-xl shadow-slate-900/10 border border-slate-200/50 overflow-hidden z-50"
+                            >
+                              {link.children?.map((child) => {
+                                const isChildActive = isLinkActive(child.href);
+                                return (
+                                  <Link
+                                    key={child.href}
+                                    href={child.href}
+                                    className={cn(
+                                      "block px-4 py-3 text-sm font-medium transition-all duration-200",
+                                      isChildActive
+                                        ? "text-indigo-700 bg-indigo-50 border-l-4 border-indigo-600"
+                                        : "text-slate-600 hover:text-indigo-600 hover:bg-slate-50 border-l-4 border-transparent"
+                                    )}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                );
+                              })}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        "relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
+                        useLightText
+                          ? isActive
+                            ? "text-white bg-white/25 shadow-inner"
+                            : "text-white/80 hover:text-white hover:bg-white/10"
+                          : isActive
+                            ? "text-indigo-700 bg-white shadow-md font-semibold"
+                            : "text-slate-600 hover:text-indigo-600 hover:bg-white/60"
+                      )}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className={cn(
+                            "absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-1 rounded-full",
+                            useLightText ? "bg-amber-400" : "bg-indigo-600"
+                          )}
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
             </motion.div>
 
@@ -211,36 +312,109 @@ export default function Navbar() {
                     : "bg-white/95 backdrop-blur-xl border-slate-200/50 shadow-xl"
                 )}>
                   <ul className="flex flex-col gap-2 px-4">
-                    {NAV_LINKS.map((link, index) => (
-                      <motion.li
-                        key={link.href}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                      >
-                        <Link
-                          href={link.href}
-                          className={cn(
-                            "flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-200",
-                            useLightText
-                              ? pathname === link.href
-                                ? "text-white bg-white/20"
-                                : "text-white/90 hover:text-white hover:bg-white/10"
-                              : pathname === link.href
-                                ? "text-indigo-600 bg-indigo-50"
-                                : "text-slate-700 hover:text-indigo-600 hover:bg-slate-50"
-                          )}
+                    {(NAV_LINKS as readonly NavLink[]).map((link, index) => {
+                      const isActive = isLinkActive(link.href);
+                      const hasChildren = link.children && link.children.length > 0;
+
+                      if (hasChildren) {
+                        return (
+                          <motion.li
+                            key={link.href}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                          >
+                            <button
+                              onClick={() => setOpenDropdown(openDropdown === link.href ? null : link.href)}
+                              className={cn(
+                                "w-full flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-200",
+                                useLightText
+                                  ? isActive
+                                    ? "text-white bg-white/25 border-l-4 border-amber-400"
+                                    : "text-white/90 hover:text-white hover:bg-white/10"
+                                  : isActive
+                                    ? "text-indigo-700 bg-indigo-50 border-l-4 border-indigo-600 font-semibold"
+                                    : "text-slate-700 hover:text-indigo-600 hover:bg-slate-50"
+                              )}
+                            >
+                              {link.label}
+                              <FaChevronDown className={cn(
+                                "text-xs transition-transform duration-200",
+                                openDropdown === link.href && "rotate-180"
+                              )} />
+                            </button>
+
+                            {/* Mobile Submenu */}
+                            <AnimatePresence>
+                              {openDropdown === link.href && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="pl-4 pt-2 space-y-1">
+                                    {link.children?.map((child) => {
+                                      const isChildActive = isLinkActive(child.href);
+                                      return (
+                                        <Link
+                                          key={child.href}
+                                          href={child.href}
+                                          className={cn(
+                                            "block px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
+                                            useLightText
+                                              ? isChildActive
+                                                ? "text-white bg-white/20 border-l-2 border-amber-400"
+                                                : "text-white/80 hover:text-white hover:bg-white/10"
+                                              : isChildActive
+                                                ? "text-indigo-700 bg-indigo-50/70 border-l-2 border-indigo-600"
+                                                : "text-slate-600 hover:text-indigo-600 hover:bg-slate-50"
+                                          )}
+                                        >
+                                          {child.label}
+                                        </Link>
+                                      );
+                                    })}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </motion.li>
+                        );
+                      }
+
+                      return (
+                        <motion.li
+                          key={link.href}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
                         >
-                          {link.label}
-                          {pathname === link.href && (
-                            <div className={cn(
-                              "w-2 h-2 rounded-full",
-                              useLightText ? "bg-amber-400" : "bg-indigo-600"
-                            )} />
-                          )}
-                        </Link>
-                      </motion.li>
-                    ))}
+                          <Link
+                            href={link.href}
+                            className={cn(
+                              "flex items-center justify-between px-5 py-4 rounded-xl text-base font-medium transition-all duration-200",
+                              useLightText
+                                ? isActive
+                                  ? "text-white bg-white/25 border-l-4 border-amber-400"
+                                  : "text-white/90 hover:text-white hover:bg-white/10"
+                                : isActive
+                                  ? "text-indigo-700 bg-indigo-50 border-l-4 border-indigo-600 font-semibold"
+                                  : "text-slate-700 hover:text-indigo-600 hover:bg-slate-50"
+                            )}
+                          >
+                            {link.label}
+                            {isActive && (
+                              <div className={cn(
+                                "w-2 h-2 rounded-full animate-pulse",
+                                useLightText ? "bg-amber-400" : "bg-indigo-600"
+                              )} />
+                            )}
+                          </Link>
+                        </motion.li>
+                      );
+                    })}
                     <motion.li
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}

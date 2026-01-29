@@ -26,7 +26,7 @@ export default function HeroSlider() {
   }, [isAutoPlaying, nextSlide]);
 
   return (
-    <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       {/* Background Slides */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -151,7 +151,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {HERO_SLIDES.map((_, index) => (
           <button
             key={index}
@@ -169,23 +169,23 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - centered at bottom */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-10 right-10 hidden md:flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
       >
-        <span className="text-white/50 text-xs uppercase tracking-widest rotate-90 origin-center translate-x-6">
-          Scroll
-        </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-7 h-12 rounded-full border-2 border-white/25 flex items-start justify-center p-2"
+          className="w-7 h-12 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
         >
           <div className="w-1.5 h-3 bg-amber-400 rounded-full" />
         </motion.div>
+        <span className="text-white/50 text-xs uppercase tracking-widest font-medium">
+          Scroll
+        </span>
       </motion.div>
     </section>
   );

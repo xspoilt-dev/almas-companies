@@ -45,21 +45,21 @@ interface Blob {
   animationDelay: number;
 }
 
-// Color palettes for light theme
+// Color palettes for light theme - increased opacity for better visibility
 const orbColors = [
-  'rgba(99, 102, 241, 0.15)',   // Indigo
-  'rgba(139, 92, 246, 0.12)',   // Violet
-  'rgba(245, 158, 11, 0.10)',   // Amber
-  'rgba(59, 130, 246, 0.12)',   // Blue
-  'rgba(168, 85, 247, 0.10)',   // Purple
-  'rgba(236, 72, 153, 0.08)',   // Pink
+  'rgba(99, 102, 241, 0.25)',   // Indigo - increased from 0.15
+  'rgba(139, 92, 246, 0.20)',   // Violet - increased from 0.12
+  'rgba(245, 158, 11, 0.18)',   // Amber - increased from 0.10
+  'rgba(59, 130, 246, 0.20)',   // Blue - increased from 0.12
+  'rgba(168, 85, 247, 0.18)',   // Purple - increased from 0.10
+  'rgba(236, 72, 153, 0.15)',   // Pink - increased from 0.08
 ];
 
 const shapeColors = [
-  'rgba(99, 102, 241, 0.08)',   // Indigo
-  'rgba(139, 92, 246, 0.06)',   // Violet
-  'rgba(245, 158, 11, 0.08)',   // Amber
-  'rgba(59, 130, 246, 0.06)',   // Blue
+  'rgba(99, 102, 241, 0.15)',   // Indigo - increased from 0.08
+  'rgba(139, 92, 246, 0.12)',   // Violet - increased from 0.06
+  'rgba(245, 158, 11, 0.15)',   // Amber - increased from 0.08
+  'rgba(59, 130, 246, 0.12)',   // Blue - increased from 0.06
 ];
 
 // Generate elements deterministically
@@ -92,7 +92,7 @@ const generateShapes = (): Shape[] => {
       rotation: (i * 30) % 360,
       animationDuration: 30 + (i % 6) * 8,
       animationDelay: -(i * 3),
-      opacity: 0.03 + (i % 5) * 0.015,
+      opacity: 0.06 + (i % 5) * 0.025, // Increased from 0.03 + (i % 5) * 0.015
     });
   }
   return shapes;
@@ -101,11 +101,11 @@ const generateShapes = (): Shape[] => {
 const generateBlobs = (): Blob[] => {
   const blobs: Blob[] = [];
   const colorPairs = [
-    ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.05)'],
-    ['rgba(245, 158, 11, 0.06)', 'rgba(251, 191, 36, 0.04)'],
-    ['rgba(59, 130, 246, 0.07)', 'rgba(99, 102, 241, 0.04)'],
-    ['rgba(168, 85, 247, 0.05)', 'rgba(236, 72, 153, 0.03)'],
-    ['rgba(16, 185, 129, 0.05)', 'rgba(59, 130, 246, 0.03)'],
+    ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.05)'],   // Decreased opacity
+    ['rgba(245, 158, 11, 0.06)', 'rgba(251, 191, 36, 0.04)'],   // Decreased opacity
+    ['rgba(59, 130, 246, 0.07)', 'rgba(99, 102, 241, 0.04)'],   // Decreased opacity
+    ['rgba(168, 85, 247, 0.05)', 'rgba(236, 72, 153, 0.03)'],   // Decreased opacity
+    ['rgba(16, 185, 129, 0.05)', 'rgba(59, 130, 246, 0.03)'],   // Decreased opacity
   ];
   for (let i = 0; i < CONFIG.blobCount; i++) {
     blobs.push({
@@ -150,7 +150,7 @@ export default function AnimatedBackground() {
       <div 
         className="absolute inset-0 animate-gradient-shift"
         style={{
-          background: 'radial-gradient(ellipse 100% 80% at 10% 20%, rgba(251, 191, 36, 0.12) 0%, transparent 50%), radial-gradient(ellipse 80% 100% at 90% 80%, rgba(99, 102, 241, 0.10) 0%, transparent 50%), radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167, 139, 250, 0.06) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse 100% 80% at 10% 20%, rgba(251, 191, 36, 0.20) 0%, transparent 50%), radial-gradient(ellipse 80% 100% at 90% 80%, rgba(99, 102, 241, 0.18) 0%, transparent 50%), radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167, 139, 250, 0.12) 0%, transparent 50%)',
         }}
       />
 
@@ -177,7 +177,7 @@ export default function AnimatedBackground() {
       <div 
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full animate-pulse-soft blur-3xl"
         style={{
-          background: 'radial-gradient(circle, rgba(254, 243, 199, 0.25) 0%, rgba(252, 231, 243, 0.10) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(254, 243, 199, 0.20) 0%, rgba(252, 231, 243, 0.10) 40%, transparent 70%)',
         }}
       />
 
@@ -264,7 +264,7 @@ export default function AnimatedBackground() {
 
       {/* Subtle grid pattern */}
       <div 
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage: `linear-gradient(rgba(99, 102, 241, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 1) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
@@ -273,7 +273,7 @@ export default function AnimatedBackground() {
 
       {/* Noise texture overlay for depth */}
       <div 
-        className="absolute inset-0 opacity-[0.02] mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}

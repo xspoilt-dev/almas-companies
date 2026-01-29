@@ -11,9 +11,99 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
+  { 
+    href: "/products", 
+    label: "Products",
+    children: [
+      { href: "/products/import", label: "Import Products" },
+      { href: "/products/export", label: "Export Products" },
+    ]
+  },
   { href: "/companies", label: "Companies" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+export const IMPORT_PRODUCTS = [
+  {
+    id: 1,
+    name: "Corn Gluten Meal (CGM)",
+    image: "/images/import/Corn_Gluten_Meal_(CGM)​.jpg",
+    description: "High-protein animal feed ingredient derived from corn processing. Rich in protein content, ideal for poultry and livestock nutrition.",
+    category: "Animal Feed",
+  },
+  {
+    id: 2,
+    name: "Cotton Yarn",
+    image: "/images/import/cotton_yarn.jpg",
+    description: "Premium quality cotton yarn for textile manufacturing. Available in various counts and specifications for diverse textile applications.",
+    category: "Textiles",
+  },
+  {
+    id: 3,
+    name: "Fish Meal",
+    image: "/images/import/Fish_Meal.jpg",
+    description: "Nutrient-rich fish meal for aquaculture and animal feed. High in protein and omega-3 fatty acids for optimal animal growth.",
+    category: "Animal Feed",
+  },
+  {
+    id: 4,
+    name: "Fish Oil",
+    image: "/images/import/Fish_Oil.jpg",
+    description: "High-quality fish oil for feed, pharmaceutical, and industrial applications. Rich in essential fatty acids and vitamins.",
+    category: "Oils & Fats",
+  },
+  {
+    id: 5,
+    name: "HDPE (High-Density Polyethylene)",
+    image: "/images/import/HDPE_(High-Density_Polyethylene).jpg",
+    description: "Industrial-grade HDPE polymer for manufacturing containers, pipes, and plastic products. Excellent chemical resistance and durability.",
+    category: "Polymers",
+  },
+  {
+    id: 6,
+    name: "High Tenacity Polyester Filament Yarn",
+    image: "/images/import/high_tenacity_polyster_filament_yarn.jpg",
+    description: "High-strength polyester yarn for industrial textiles, tire cords, and technical fabrics. Superior tensile strength and dimensional stability.",
+    category: "Textiles",
+  },
+  {
+    id: 7,
+    name: "Limestone (Food Grade)",
+    image: "/images/import/Limestone_(food_frade).jpg",
+    description: "Food-grade limestone for poultry feed and calcium supplementation. Essential mineral source for animal nutrition and eggshell quality.",
+    category: "Minerals",
+  },
+  {
+    id: 8,
+    name: "Maize",
+    image: "/images/import/Maize.jpg",
+    description: "Premium quality maize for food processing and animal feed. Versatile grain commodity with high energy content.",
+    category: "Grains",
+  },
+  {
+    id: 9,
+    name: "Sugarcane Molasses",
+    image: "/images/import/Sugarcane_molasses.jpg",
+    description: "High-quality sugarcane molasses for animal feed and fermentation industries. Rich in minerals and carbohydrates.",
+    category: "By-products",
+  },
+  {
+    id: 10,
+    name: "Wheat",
+    image: "/images/import/wheat.jpg",
+    description: "Premium wheat grain for flour milling and food production. High-quality grain meeting international standards.",
+    category: "Grains",
+  },
+  {
+    id: 11,
+    name: "Wheat Bran",
+    image: "/images/import/Wheat_Bran.jpg",
+    description: "Nutritious wheat bran for animal feed and food products. Excellent source of fiber and essential nutrients.",
+    category: "By-products",
+  },
+];
+
+export const EXPORT_PRODUCTS: typeof IMPORT_PRODUCTS = [];
 
 export const SERVICES = [
   {

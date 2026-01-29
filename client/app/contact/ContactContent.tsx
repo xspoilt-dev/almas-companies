@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
@@ -16,6 +17,13 @@ import PageHeader from "@/components/ui/PageHeader";
 import { CONTACT_INFO } from "@/lib/constants";
 
 export default function ContactContent() {
+  const searchParams = useSearchParams();
+  
+  // Get query parameters
+  const productParam = searchParams.get('product');
+  const typeParam = searchParams.get('type');
+  const subjectParam = searchParams.get('subject');
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,6 +35,37 @@ export default function ContactContent() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Auto-fill form based on URL parameters
+  useEffect(() => {
+    if (productParam && typeParam) {
+      const subjectText = `${typeParam === 'import' ? 'Import' : 'Export'} Inquiry - ${productParam}`;
+      const messageText = `I would like to inquire about ${productParam} for ${typeParam}.
+
+Product: ${productParam}
+Type: ${typeParam.toUpperCase()}
+
+Please provide me with:
+- Pricing information
+- Minimum order quantity
+- Lead time
+- Shipping options
+- Product specifications
+
+Thank you.`;
+
+      setFormData(prev => ({
+        ...prev,
+        subject: 'product-inquiry',
+        message: messageText
+      }));
+    } else if (subjectParam) {
+      setFormData(prev => ({
+        ...prev,
+        subject: subjectParam
+      }));
+    }
+  }, [productParam, typeParam, subjectParam]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

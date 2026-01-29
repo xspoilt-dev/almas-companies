@@ -6,10 +6,11 @@ import { ReactNode } from "react";
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
+  badge?: string;
   children?: ReactNode;
 }
 
-export default function PageHeader({ title, subtitle, children }: PageHeaderProps) {
+export default function PageHeader({ title, subtitle, badge = "Almas Group", children }: PageHeaderProps) {
   return (
     <section className="relative pt-32 pb-20 bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-900 overflow-hidden">
       {/* Background Pattern */}
@@ -36,7 +37,7 @@ export default function PageHeader({ title, subtitle, children }: PageHeaderProp
           className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
         >
           <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-          <span className="text-white/90 text-sm font-medium tracking-wide">Almas Group</span>
+          <span className="text-white/90 text-sm font-medium tracking-wide">{badge}</span>
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

@@ -5,6 +5,8 @@ import {
   FaIndustry,
   FaWarehouse,
   FaShoppingCart,
+  FaSeedling,
+  FaFlask,
 } from "react-icons/fa";
 
 export const NAV_LINKS = [
@@ -101,43 +103,162 @@ export const IMPORT_PRODUCTS = [
     description: "Nutritious wheat bran for animal feed and food products. Excellent source of fiber and essential nutrients.",
     category: "By-products",
   },
-];
-
-export const EXPORT_PRODUCTS = [
   {
-    id: 1,
+    id: 12,
     name: "Grain",
     image: "/images/export/grain.jpg",
     description: "Premium quality grains for international markets. High-grade cereals meeting global food safety standards.",
     category: "Grains",
   },
   {
-    id: 2,
+    id: 13,
     name: "Orange",
     image: "/images/export/orange.jpg",
     description: "Fresh citrus oranges packed with vitamin C. Sweet and juicy fruits sourced from the finest orchards.",
     category: "Fruits",
   },
   {
-    id: 3,
+    id: 14,
     name: "Pomegranate",
     image: "/images/export/POMEGRANATE.jpg",
     description: "Premium pomegranates rich in antioxidants. Fresh, ruby-red arils with exceptional taste and quality.",
     category: "Fruits",
   },
   {
-    id: 4,
+    id: 15,
     name: "Poultry Meal",
     image: "/images/export/Poultry_Meal.jpg",
     description: "High-protein poultry meal for animal feed. Excellent source of amino acids and nutrients for livestock.",
     category: "Animal Feed",
   },
   {
-    id: 5,
+    id: 16,
     name: "Rapeseed Extraction",
     image: "/images/export/Rapeseed_Extraction.jpg",
     description: "Quality rapeseed meal extracted from premium seeds. Ideal for animal nutrition and feed formulation.",
     category: "By-products",
+  },
+  {
+    id: 17,
+    name: "Shoe Accessories",
+    image: "/images/import/Shoe_Accessories.jpg",
+    description: "High-quality shoe components and accessories for footwear manufacturing. Premium materials for durable and stylish footwear.",
+    category: "Accessories",
+  },
+  {
+    id: 18,
+    name: "Shoe Mould",
+    image: "/images/import/shoe_mould.jpg",
+    description: "Precision-engineered shoe moulds for footwear production. Durable and accurate moulds for consistent quality manufacturing.",
+    category: "Manufacturing Tools",
+  },
+];
+
+export const EXPORT_PRODUCTS = [
+  {
+    id: 1,
+    name: "Potato",
+    image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800&q=80",
+    description: "Fresh Bangladeshi potatoes. Available season: December to March. High-quality produce for international markets.",
+    category: "Vegetables",
+  },
+  {
+    id: 2,
+    name: "Cabbage",
+    image: "https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?w=800&q=80",
+    description: "Fresh cabbage from Bangladesh. Season: October to February. Crisp and nutritious for export.",
+    category: "Vegetables",
+  },
+  {
+    id: 3,
+    name: "Cauliflower",
+    image: "https://images.unsplash.com/photo-1692956706779-576c151ec712?w=800&q=80",
+    description: "Premium cauliflower. Season: October to February. Fresh and high-quality for global markets.",
+    category: "Vegetables",
+  },
+  {
+    id: 4,
+    name: "Carrot",
+    image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=800&q=80",
+    description: "Fresh carrots from Bangladesh. Season: October to April. Rich in nutrients and perfect for export.",
+    category: "Vegetables",
+  },
+  {
+    id: 5,
+    name: "Brinjal (Eggplant)",
+    image: "https://images.unsplash.com/photo-1730202452902-3b0fa8d96536?w=800&q=80",
+    description: "High-quality brinjal (eggplant). Season: October to April. Fresh produce for international buyers.",
+    category: "Vegetables",
+  },
+  {
+    id: 6,
+    name: "Green Chilli",
+    image: "https://images.unsplash.com/photo-1583663848850-46af132dc08e?w=800&q=80",
+    description: "Fresh green chilli from Bangladesh. Season: October to April. Spicy and flavorful for export.",
+    category: "Vegetables",
+  },
+  {
+    id: 7,
+    name: "Teasel Gourd (Kakrol)",
+    image: "https://specprodstorage.blob.core.windows.net/spotpics/sp88931_300.jpg",
+    description: "Teasel Gourd (Kakrol). Season: May to September. Traditional Bangladeshi vegetable for export markets.",
+    category: "Vegetables",
+  },
+  {
+    id: 8,
+    name: "Bitter Gourd (Korola)",
+    image: "https://images.unsplash.com/photo-1739903760973-4731a8e79a03?w=800&q=80",
+    description: "Fresh bitter gourd. Season: May to August. Nutritious vegetable popular in Asian cuisine.",
+    category: "Vegetables",
+  },
+  {
+    id: 9,
+    name: "Bottle Gourd (Laow)",
+    image: "https://images.unsplash.com/photo-1730127487636-b7fe550af030?w=800&q=80",
+    description: "Bottle Gourd (Laow). Season: October to February. Fresh and healthy for global markets.",
+    category: "Vegetables",
+  },
+  {
+    id: 11,
+    name: "Tomato",
+    image: "https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=800&q=80",
+    description: "Fresh Bangladeshi tomatoes. Year-round availability. Premium quality for export markets.",
+    category: "Vegetables",
+  },
+  {
+    id: 12,
+    name: "Crab",
+    image: "/images/export/crab.jpg",
+    description: "Fresh crabs from Bangladesh coastal waters. Rich in protein and omega-3 fatty acids. Premium quality seafood for international markets.",
+    category: "Seafood",
+  },
+  {
+    id: 13,
+    name: "Eel Fish",
+    image: "/images/export/eil_fish.jpg",
+    description: "High-quality eel fish from Bangladesh waters. Rich in vitamins and minerals. Fresh catch for global seafood markets.",
+    category: "Seafood",
+  },
+  {
+    id: 14,
+    name: "Prawn",
+    image: "/images/export/prawn.jpg",
+    description: "Premium prawns from Bangladesh. Fresh and frozen varieties available. Sustainably sourced for export to international markets.",
+    category: "Seafood",
+  },
+  {
+    id: 15,
+    name: "Shrimp",
+    image: "/images/export/Shrimp.jpg",
+    description: "High-quality shrimp processed to international standards. Fresh and frozen options. Bangladesh's finest seafood export.",
+    category: "Seafood",
+  },
+  {
+    id: 16,
+    name: "Tilapia",
+    image: "/images/export/tilapia.jpg",
+    description: "Farm-raised tilapia from Bangladesh. High protein, low fat fish. Fresh and processed for global markets.",
+    category: "Seafood",
   },
 ] as const;
 
@@ -301,45 +422,45 @@ export const SERVICES = [
 export const COMPANIES = [
   {
     id: 1,
-    name: "Almas Trading Co.",
+    name: "ALMAS BANGLADESH LIMITED",
     icon: FaGlobe,
     description: "International commodity trading and wholesale distribution across global markets.",
     category: "Trading",
   },
   {
     id: 2,
-    name: "Almas Logistics",
+    name: "ALMAS BROTHERS",
     icon: FaTruck,
     description: "Comprehensive freight forwarding and supply chain management solutions.",
     category: "Logistics",
   },
   {
     id: 3,
-    name: "Almas Industries",
+    name: "ALMAS ENTERPRISE",
     icon: FaIndustry,
     description: "Manufacturing and industrial production facilities for export-quality goods.",
     category: "Manufacturing",
   },
   {
     id: 4,
-    name: "Almas Warehousing",
-    icon: FaWarehouse,
-    description: "State-of-the-art storage and distribution centers strategically located worldwide.",
-    category: "Storage",
-  },
-  {
-    id: 5,
-    name: "Almas Properties",
-    icon: FaBuilding,
-    description: "Commercial real estate development and property management services.",
-    category: "Real Estate",
-  },
-  {
-    id: 6,
-    name: "Almas Retail",
+    name: "ALMAS RETAIL CENTER",
     icon: FaShoppingCart,
     description: "Consumer goods retail and e-commerce operations serving diverse markets.",
     category: "Retail",
+  },
+  {
+    id: 5,
+    name: "AGRO DIAMOND BANGLADESH LIMITED",
+    icon: FaSeedling,
+    description: "Agricultural products and agro-based industrial solutions for sustainable farming.",
+    category: "Agriculture",
+  },
+  {
+    id: 6,
+    name: "INOTECH BIOSCINCE COMPANY LIMITED",
+    icon: FaFlask,
+    description: "Biotechnology and life sciences research for innovative healthcare solutions.",
+    category: "Bioscience",
   },
 ] as const;
 
@@ -382,12 +503,6 @@ export const HERO_SLIDES = [
     subtitle: "Efficient supply chain management for seamless operations",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80",
   },
-  {
-    id: 3,
-    title: "Your Trusted Trade Partner",
-    subtitle: "30+ years of international trading expertise at your service",
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80",
-  },
 ] as const;
 
 export const BUSINESS_CATEGORY = "Commercial and Industrial Raw-materials Supplier" as const;
@@ -395,12 +510,12 @@ export const BUSINESS_CATEGORY = "Commercial and Industrial Raw-materials Suppli
 export const CONTACT_INFO = {
   address: "28, 1 Toyenbee Circular Rd, Dhaka 1000",
   email: "info@almas-companies.com",
-  phone: "+8801740768976",
+  phone: "+8801712184118",
   hours: "Sunday - Thursday: 9:00 AM - 6:00 PM",
 } as const;
 
 export const SOCIAL_LINKS = {
   linkedin: "https://linkedin.com/company/almas-companies",
   twitter: "https://twitter.com/almasgroup",
-  facebook: "https://www.facebook.com/profile.php?id=61587080888872",
+  facebook: "https://www.facebook.com/profile.php?id=61587080888720",
 } as const;

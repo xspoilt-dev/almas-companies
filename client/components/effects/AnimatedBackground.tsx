@@ -4,10 +4,10 @@ import { useEffect, useState, useMemo } from "react";
 
 // ===== PERFORMANCE OPTIMIZED CONFIGURATION =====
 const CONFIG = {
-  // Reduce counts for better performance on low-end devices
-  orbCount: 4,        // Reduced from 8
-  shapeCount: 8,      // Reduced from 15
-  blobCount: 3,       // Reduced from 5
+  // Further reduced for static build and low-end devices
+  orbCount: 2,        // Reduced from 4
+  shapeCount: 4,      // Reduced from 8
+  blobCount: 2,       // Reduced from 3
   // Disable animations on mobile for better performance
   disableAnimationsOnMobile: true,
 };

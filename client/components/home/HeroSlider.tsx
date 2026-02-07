@@ -21,7 +21,7 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 6000); // Increased from 5000 for smoother transitions
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide]);
 
@@ -34,7 +34,7 @@ export default function HeroSlider() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.6, ease: "easeInOut" }} // Slightly slower for smoothness
           className="absolute inset-0"
         >
           {/* Background Image */}
@@ -44,7 +44,7 @@ export default function HeroSlider() {
             fill
             className="object-cover"
             priority={currentSlide === 0}
-            quality={85}
+            quality={75}
             sizes="100vw"
             loading={currentSlide === 0 ? "eager" : "lazy"}
           />

@@ -90,6 +90,14 @@ export default function Navbar() {
                     priority
                   />
                 </div>
+                <span className={cn(
+                  "text-2xl font-bold tracking-tight transition-all duration-300",
+                  useLightText
+                    ? "bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:via-cyan-200 group-hover:to-blue-400"
+                    : "bg-gradient-to-r from-indigo-600 via-blue-600 to-violet-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-indigo-700 group-hover:to-violet-700"
+                )}>
+                  ALMAS GROUP
+                </span>
               </motion.div>
             </Link>
 

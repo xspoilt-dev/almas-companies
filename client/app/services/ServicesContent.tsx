@@ -107,6 +107,8 @@ export default function ServicesContent() {
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
+                          loading="lazy"
+                          quality={75}
                         />
                         
                         {/* Gradient Overlay */}
@@ -130,6 +132,8 @@ export default function ServicesContent() {
                             width={50} 
                             height={50}
                             className="opacity-80"
+                            loading="lazy"
+                            quality={75}
                           />
                         </div>
                       </div>

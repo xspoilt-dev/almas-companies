@@ -21,7 +21,7 @@ export default function Navbar() {
   const [currentPath, setCurrentPath] = useState("/");
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
-  
+
   // Update current path when pathname changes
   useEffect(() => {
     if (pathname) {
@@ -62,10 +62,10 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-white/90 backdrop-blur-2xl shadow-lg shadow-slate-900/5 border-b border-slate-200/50"
-            : useLightText 
-              ? "bg-white/5 backdrop-blur-xl border-b border-white/10" 
-              : "bg-white/90 backdrop-blur-2xl shadow-sm border-b border-slate-200/50"
+            ? "bg-white/90 backdrop-blur-sm shadow-lg shadow-slate-900/5 border-b border-slate-200/50"
+            : useLightText
+              ? "bg-white/5 backdrop-blur-sm border-b border-white/10"
+              : "bg-white/90 backdrop-blur-sm shadow-sm border-b border-slate-200/50"
         )}
       >
         <nav className="container-custom">
@@ -81,10 +81,10 @@ export default function Navbar() {
                 <div className={cn(
                   "relative h-16 transition-all duration-300 group-hover:scale-105",
                 )}>
-                  <Image 
-                    src="/logo.png" 
-                    alt="Almas Group Logo" 
-                    width={180} 
+                  <Image
+                    src="/logo.png"
+                    alt="Almas Group Logo"
+                    width={180}
                     height={64}
                     className="h-full w-auto object-contain"
                     priority
@@ -110,8 +110,8 @@ export default function Navbar() {
             >
               <div className={cn(
                 "flex items-center gap-1 px-2 py-2 rounded-2xl transition-all duration-300",
-                useLightText 
-                  ? "bg-white/10 backdrop-blur-md border border-white/15" 
+                useLightText
+                  ? "bg-white/10 backdrop-blur-md border border-white/15"
                   : "bg-slate-100/80 border border-slate-200/50"
               )}>
                 {(NAV_LINKS as readonly NavLink[]).map((link) => {
@@ -163,7 +163,7 @@ export default function Navbar() {
                               animate={{ opacity: 1, y: 0, scale: 1 }}
                               exit={{ opacity: 0, y: 10, scale: 0.95 }}
                               transition={{ duration: 0.2 }}
-                              className="absolute top-full left-0 mt-2 w-56 py-2 bg-white/95 backdrop-blur-xl rounded-xl shadow-xl shadow-slate-900/10 border border-slate-200/50 overflow-hidden z-50"
+                              className="absolute top-full left-0 mt-2 w-56 py-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl shadow-slate-900/10 border border-slate-200/50 overflow-hidden z-50"
                             >
                               {link.children?.map((child) => {
                                 const isChildActive = isLinkActive(child.href);
@@ -247,8 +247,8 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className={cn(
                 "lg:hidden p-3 rounded-xl transition-all duration-300",
-                useLightText 
-                  ? "text-white bg-white/10 hover:bg-white/20 border border-white/20" 
+                useLightText
+                  ? "text-white bg-white/10 hover:bg-white/20 border border-white/20"
                   : "text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200"
               )}
               aria-label="Toggle menu"
@@ -291,9 +291,9 @@ export default function Navbar() {
               >
                 <div className={cn(
                   "py-6 mx-4 mb-4 rounded-2xl border",
-                  useLightText 
-                    ? "bg-white/10 backdrop-blur-xl border-white/20" 
-                    : "bg-white/95 backdrop-blur-xl border-slate-200/50 shadow-xl"
+                  useLightText
+                    ? "bg-white/10 backdrop-blur-sm border-white/20"
+                    : "bg-white/95 backdrop-blur-sm border-slate-200/50 shadow-xl"
                 )}>
                   <ul className="flex flex-col gap-2 px-4">
                     {(NAV_LINKS as readonly NavLink[]).map((link, index) => {

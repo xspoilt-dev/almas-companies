@@ -81,16 +81,16 @@ body {
 /* Glass morphism utility - Premium Light Theme */
 .glass {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .glass-dark {
   background: linear-gradient(135deg, rgba(79, 70, 229, 0.95) 0%, rgba(67, 56, 202, 0.95) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
 }
@@ -170,29 +170,7 @@ html {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Floating squares animation */
-@keyframes float-square {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(30px, -40px) rotate(90deg);
-  }
-  50% {
-    transform: translate(-20px, -80px) rotate(180deg);
-  }
-  75% {
-    transform: translate(40px, -40px) rotate(270deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(360deg);
-  }
-}
 
-.animate-float-square {
-  animation: float-square linear infinite;
-  will-change: transform;
-}
 
 /* ===== ANIMATED BACKGROUND EFFECTS ===== */
 
@@ -388,13 +366,6 @@ html {
 
 /* ===== CUSTOM EFFECTS ===== */
 
-/* Floating squares animation enhancement */
-.floating-square {
-  transition: opacity 0.5s ease-out;
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
-
 /* Magnetic button effect */
 .magnetic-btn {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -467,8 +438,8 @@ a, button {
 
 /* Backdrop blur enhancement */
 .backdrop-enhanced {
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Selection color */

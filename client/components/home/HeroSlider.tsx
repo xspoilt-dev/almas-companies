@@ -48,19 +48,12 @@ export default function HeroSlider() {
             sizes="100vw"
             loading={currentSlide === 0 ? "eager" : "lazy"}
           />
-          
+
           {/* Premium gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/95 via-indigo-900/85 to-violet-900/80" />
-          
-          {/* Decorative shapes */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 left-10 w-80 h-80 bg-amber-400/15 rounded-full blur-3xl animate-pulse-soft" />
-            <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl" />
-          </div>
 
           {/* Grid pattern overlay */}
-          <div 
+          <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
@@ -161,11 +154,10 @@ export default function HeroSlider() {
               setCurrentSlide(index);
               setIsAutoPlaying(false);
             }}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              index === currentSlide
+            className={`h-2.5 rounded-full transition-all duration-300 ${index === currentSlide
                 ? "w-12 bg-gradient-to-r from-amber-400 to-amber-500"
                 : "w-2.5 bg-white/30 hover:bg-white/50"
-            }`}
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

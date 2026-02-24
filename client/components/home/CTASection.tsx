@@ -17,14 +17,8 @@ export default function CTASection() {
           transition={{ duration: 0.6 }}
           className="relative bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-600 rounded-[2.5rem] overflow-hidden"
         >
-          {/* Background decorations */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-400/20 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
-          </div>
-
           {/* Grid pattern */}
-          <div 
+          <div
             className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
@@ -50,7 +44,7 @@ export default function CTASection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed"
             >
-              Partner with Almas Group for seamless international trade solutions. 
+              Partner with Almas Group for seamless international trade solutions.
               Let&apos;s discuss how we can help you achieve your global ambitions.
             </motion.p>
 

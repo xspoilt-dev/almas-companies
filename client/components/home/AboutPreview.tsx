@@ -9,7 +9,7 @@ export default function AboutPreview() {
   return (
     <section className="section-padding relative">
       {/* Subtle frosted glass overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-amber-50/20 to-indigo-50/30" />
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -31,14 +31,14 @@ export default function AboutPreview() {
             </h2>
 
             <p className="text-slate-600 leading-relaxed mb-4 text-lg">
-              Almas Group has been at the forefront of international trade for over two decades. 
-              As a diversified conglomerate, we specialize in import-export services, logistics, 
+              Almas Group has been at the forefront of international trade for over two decades.
+              As a diversified conglomerate, we specialize in import-export services, logistics,
               and business consulting, serving clients across continents.
             </p>
 
             <p className="text-slate-600 leading-relaxed mb-8 text-lg">
-              Our commitment to excellence, combined with our deep understanding of global markets, 
-              has made us a trusted partner for businesses seeking to expand their international footprint. 
+              Our commitment to excellence, combined with our deep understanding of global markets,
+              has made us a trusted partner for businesses seeking to expand their international footprint.
               We bridge the gap between markets, ensuring seamless transactions and lasting partnerships.
             </p>
 
@@ -84,21 +84,21 @@ export default function AboutPreview() {
               {/* Main visual block */}
               <div className="aspect-[4/3] bg-gradient-to-br from-indigo-600 via-indigo-500 to-violet-600 rounded-3xl overflow-hidden shadow-2xl shadow-indigo-500/25">
                 {/* Pattern overlay */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-10"
                   style={{
                     backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
                     backgroundSize: '30px 30px'
                   }}
                 />
-                
+
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center justify-center p-8">
                   <div className="text-center flex items-center justify-center">
-                    <Image 
-                      src="/logo.png" 
-                      alt="Almas Group Logo" 
-                      width={280} 
+                    <Image
+                      src="/logo.png"
+                      alt="Almas Group Logo"
+                      width={280}
                       height={120}
                       className="w-auto h-auto max-w-[280px] brightness-0 invert"
                     />

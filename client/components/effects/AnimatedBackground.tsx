@@ -4,12 +4,9 @@ import { useEffect, useState, useMemo } from "react";
 
 // ===== PERFORMANCE OPTIMIZED CONFIGURATION =====
 const CONFIG = {
-  // Further reduced for static build and low-end devices
-  orbCount: 2,        // Reduced from 4
-  shapeCount: 4,      // Reduced from 8
-  blobCount: 2,       // Reduced from 3
-  // Disable animations on mobile for better performance
-  disableAnimationsOnMobile: true,
+  orbCount: 2,
+  shapeCount: 4,
+  blobCount: 2,
 };
 
 interface Orb {
@@ -45,24 +42,22 @@ interface Blob {
   animationDelay: number;
 }
 
-// Color palettes for light theme - increased opacity for better visibility
 const orbColors = [
-  'rgba(99, 102, 241, 0.25)',   // Indigo - increased from 0.15
-  'rgba(139, 92, 246, 0.20)',   // Violet - increased from 0.12
-  'rgba(245, 158, 11, 0.18)',   // Amber - increased from 0.10
-  'rgba(59, 130, 246, 0.20)',   // Blue - increased from 0.12
-  'rgba(168, 85, 247, 0.18)',   // Purple - increased from 0.10
-  'rgba(236, 72, 153, 0.15)',   // Pink - increased from 0.08
+  'rgba(99, 102, 241, 0.25)',
+  'rgba(139, 92, 246, 0.20)',
+  'rgba(245, 158, 11, 0.18)',
+  'rgba(59, 130, 246, 0.20)',
+  'rgba(168, 85, 247, 0.18)',
+  'rgba(236, 72, 153, 0.15)',
 ];
 
 const shapeColors = [
-  'rgba(99, 102, 241, 0.15)',   // Indigo - increased from 0.08
-  'rgba(139, 92, 246, 0.12)',   // Violet - increased from 0.06
-  'rgba(245, 158, 11, 0.15)',   // Amber - increased from 0.08
-  'rgba(59, 130, 246, 0.12)',   // Blue - increased from 0.06
+  'rgba(99, 102, 241, 0.15)',
+  'rgba(139, 92, 246, 0.12)',
+  'rgba(245, 158, 11, 0.15)',
+  'rgba(59, 130, 246, 0.12)',
 ];
 
-// Generate elements deterministically
 const generateOrbs = (): Orb[] => {
   const orbs: Orb[] = [];
   for (let i = 0; i < CONFIG.orbCount; i++) {
@@ -92,7 +87,7 @@ const generateShapes = (): Shape[] => {
       rotation: (i * 30) % 360,
       animationDuration: 30 + (i % 6) * 8,
       animationDelay: -(i * 3),
-      opacity: 0.06 + (i % 5) * 0.025, // Increased from 0.03 + (i % 5) * 0.015
+      opacity: 0.06 + (i % 5) * 0.025,
     });
   }
   return shapes;
@@ -101,11 +96,11 @@ const generateShapes = (): Shape[] => {
 const generateBlobs = (): Blob[] => {
   const blobs: Blob[] = [];
   const colorPairs = [
-    ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.05)'],   // Decreased opacity
-    ['rgba(245, 158, 11, 0.06)', 'rgba(251, 191, 36, 0.04)'],   // Decreased opacity
-    ['rgba(59, 130, 246, 0.07)', 'rgba(99, 102, 241, 0.04)'],   // Decreased opacity
-    ['rgba(168, 85, 247, 0.05)', 'rgba(236, 72, 153, 0.03)'],   // Decreased opacity
-    ['rgba(16, 185, 129, 0.05)', 'rgba(59, 130, 246, 0.03)'],   // Decreased opacity
+    ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.05)'],
+    ['rgba(245, 158, 11, 0.06)', 'rgba(251, 191, 36, 0.04)'],
+    ['rgba(59, 130, 246, 0.07)', 'rgba(99, 102, 241, 0.04)'],
+    ['rgba(168, 85, 247, 0.05)', 'rgba(236, 72, 153, 0.03)'],
+    ['rgba(16, 185, 129, 0.05)', 'rgba(59, 130, 246, 0.03)'],
   ];
   for (let i = 0; i < CONFIG.blobCount; i++) {
     blobs.push({
@@ -131,7 +126,6 @@ export default function AnimatedBackground() {
 
   useEffect(() => {
     setMounted(true);
-    // Detect mobile/low-end devices
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768 || 
         (typeof navigator !== 'undefined' && /Mobi|Android|iPhone/i.test(navigator.userAgent)));
@@ -145,21 +139,39 @@ export default function AnimatedBackground() {
     return <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} aria-hidden="true" />;
   }
 
-  // Reduce animation count on mobile
-  const activeOrbs = isMobile ? orbs.slice(0, 2) : orbs;
-  const activeShapes = isMobile ? shapes.slice(0, 4) : shapes;
-  const activeBlobs = isMobile ? blobs.slice(0, 2) : blobs;
+  // ===== MOBILE: Static gradient only — zero animations, zero blur =====
+  if (isMobile) {
+    return (
+      <div 
+        className="fixed inset-0 pointer-events-none" 
+        style={{ zIndex: 0 }} 
+        aria-hidden="true"
+      >
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #fefce8 0%, #fef3c7 15%, #fff7ed 30%, #fdf4ff 50%, #eef2ff 70%, #f0f9ff 85%, #f0fdfa 100%)',
+          }}
+        />
+        {/* Soft vignette */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(248, 250, 252, 0.5) 100%)',
+          }}
+        />
+      </div>
+    );
+  }
 
+  // ===== DESKTOP: Full effects (without SVG noise texture) =====
   return (
     <div 
       className="fixed inset-0 pointer-events-none overflow-hidden" 
-      style={{ 
-        zIndex: 0,
-        willChange: 'transform', // GPU acceleration
-      }} 
+      style={{ zIndex: 0 }} 
       aria-hidden="true"
     >
-      {/* Premium base gradient - soft cream to light indigo */}
+      {/* Premium base gradient */}
       <div 
         className="absolute inset-0"
         style={{
@@ -202,8 +214,8 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Gradient blobs layer - with GPU acceleration */}
-      {activeBlobs.map((blob) => (
+      {/* Gradient blobs layer */}
+      {blobs.map((blob) => (
         <div
           key={`blob-${blob.id}`}
           className="absolute rounded-full blur-3xl"
@@ -213,15 +225,14 @@ export default function AnimatedBackground() {
             width: blob.size,
             height: blob.size,
             background: `radial-gradient(circle, ${blob.color1} 0%, ${blob.color2} 50%, transparent 70%)`,
-            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `blob ${blob.animationDuration}s ease-in-out infinite`,
+            animation: `blob ${blob.animationDuration}s ease-in-out infinite`,
             animationDelay: `${blob.animationDelay}s`,
-            willChange: isMobile ? 'auto' : 'transform',
           }}
         />
       ))}
 
-      {/* Floating orbs layer - optimized */}
-      {activeOrbs.map((orb) => (
+      {/* Floating orbs layer */}
+      {orbs.map((orb) => (
         <div
           key={`orb-${orb.id}`}
           className="absolute rounded-full blur-2xl"
@@ -231,15 +242,14 @@ export default function AnimatedBackground() {
             width: orb.size,
             height: orb.size,
             background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
-            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `float-orb ${orb.animationDuration}s ease-in-out infinite`,
+            animation: `float-orb ${orb.animationDuration}s ease-in-out infinite`,
             animationDelay: `${orb.animationDelay}s`,
-            willChange: isMobile ? 'auto' : 'transform',
           }}
         />
       ))}
 
-      {/* Geometric shapes layer - optimized */}
-      {activeShapes.map((shape) => (
+      {/* Geometric shapes layer */}
+      {shapes.map((shape) => (
         <div
           key={`shape-${shape.id}`}
           className="absolute"
@@ -250,9 +260,8 @@ export default function AnimatedBackground() {
             height: shape.size,
             opacity: shape.opacity,
             transform: `rotate(${shape.rotation}deg)`,
-            animation: isMobile && CONFIG.disableAnimationsOnMobile ? 'none' : `float-shape ${shape.animationDuration}s ease-in-out infinite`,
+            animation: `float-shape ${shape.animationDuration}s ease-in-out infinite`,
             animationDelay: `${shape.animationDelay}s`,
-            willChange: isMobile ? 'auto' : 'transform',
           }}
         >
           {shape.type === 'square' && (
@@ -292,14 +301,6 @@ export default function AnimatedBackground() {
         style={{
           backgroundImage: `linear-gradient(rgba(99, 102, 241, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 1) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Noise texture overlay for depth */}
-      <div 
-        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
 
